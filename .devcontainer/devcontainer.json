@@ -5,8 +5,11 @@
   "portsAttributes": {
     "8088": {
       "label": "Abhidhamma Reader",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openPreview",
+      "elevateIfNeeded": false
     }
   },
-  "postStartCommand": "nohup python3 server.py > /tmp/reader.log 2>&1 &"
+  "postCreateCommand": "chmod +x server.py launch_reader.sh",
+  "postStartCommand": "nohup python3 server.py > /tmp/reader.log 2>&1 &",
+  "postAttachCommand": "nohup python3 server.py > /tmp/reader.log 2>&1 &"
 }
