@@ -23,7 +23,8 @@
     currentPageNumber: 1,
     settings: {
       theme: 'paper',
-      fontFamily: 'serif',
+      fontFamily: 'gentium',
+      pageAnimation: 'fold', // 'fold' | 'slide' | 'none'
       fontSize: 19,
       lineHeight: 1.8,
       width: '760px',
@@ -121,6 +122,7 @@
     btnCloseSettings: document.getElementById('btn-close-settings'),
     themeSelector: document.getElementById('theme-selector'),
     fontFamilyGroup: document.getElementById('font-family-group'),
+    animationGroup: document.getElementById('animation-group'),
     fontSizeDisplay: document.getElementById('font-size-display'),
     btnFontDecrease: document.getElementById('btn-font-decrease'),
     btnFontIncrease: document.getElementById('btn-font-increase'),
@@ -165,6 +167,12 @@
       if (saved) {
         Object.assign(STATE.settings, JSON.parse(saved));
       }
+      if (!STATE.settings.pageAnimation) {
+        STATE.settings.pageAnimation = 'fold';
+      }
+      if (STATE.settings.fontFamily === 'serif') {
+        STATE.settings.fontFamily = 'gentium';
+      }
     } catch (e) {
       console.warn('Could not load settings from localStorage', e);
     }
@@ -207,9 +215,11 @@
     // Theme
     el.html.setAttribute('data-theme', s.theme);
     
-    // Typography Font Family
-    let fontCss = "'Newsreader', 'Charter', Georgia, Cambria, 'Times New Roman', serif";
-    if (s.fontFamily === 'sans') {
+    // Typography Font Family (complete Pali diacritical coverage: ā, ī, ū, ṭ, ḍ, ṇ, ḷ, ṃ, ṁ, ṅ, ñ)
+    let fontCss = "'Gentium Book Plus', 'Crimson Pro', Georgia, serif";
+    if (s.fontFamily === 'crimson') {
+      fontCss = "'Crimson Pro', 'Gentium Book Plus', Georgia, serif";
+    } else if (s.fontFamily === 'sans') {
       fontCss = "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif";
     } else if (s.fontFamily === 'mono') {
       fontCss = "'SF Mono', Menlo, Consolas, Monaco, monospace";
@@ -252,6 +262,11 @@
     // Font family buttons
     document.querySelectorAll('#font-family-group .btn-group-item').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.font === s.fontFamily);
+    });
+
+    // Page Animation buttons
+    document.querySelectorAll('#animation-group .btn-group-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.anim === (s.pageAnimation || 'fold'));
     });
     
     // Line height buttons
@@ -371,7 +386,7 @@
     }
   }
 
-  async function renderPdfPage(pageNum) {
+  async function renderPdfPage(pageNum, direction = null) {
     pageNum = parseInt(pageNum, 10);
     if (!STATE.pdf.doc || isNaN(pageNum)) return;
 
@@ -382,9 +397,19 @@
       return;
     }
 
+    const prevPdfPage = STATE.pdf.page || 1;
+    if (!direction && pageNum !== prevPdfPage) {
+      direction = pageNum > prevPdfPage ? 'next' : 'prev';
+    }
+
     STATE.pdf.isRendering = true;
     STATE.pdf.page = pageNum;
     STATE.currentPageNumber = pageNum;
+
+    // Trigger 3D paper fold animation on PDF wrapper
+    if (el.pdfPageWrapper && direction) {
+      triggerPageTurnAnimation(el.pdfPageWrapper, direction);
+    }
 
     // Sync controls
     if (el.pdfInputPage) el.pdfInputPage.value = pageNum;
@@ -705,11 +730,16 @@
   }
 
   // --- Unified Page Navigation & Scrubber ---
-  async function jumpToPage(targetPage) {
+  async function jumpToPage(targetPage, direction = null) {
     if (!STATE.activeManifest) return;
     targetPage = parseInt(targetPage, 10);
     if (isNaN(targetPage) || targetPage < 1 || targetPage > STATE.activeManifest.total_pages) {
       return;
+    }
+
+    const prevPage = STATE.currentPageNumber || 1;
+    if (!direction && targetPage !== prevPage) {
+      direction = targetPage > prevPage ? 'next' : 'prev';
     }
     
     STATE.currentPageNumber = targetPage;
@@ -719,7 +749,7 @@
 
     // In PDF or Split mode, render PDF page immediately
     if (STATE.viewMode === 'pdf' || STATE.viewMode === 'split') {
-      await renderPdfPage(targetPage);
+      await renderPdfPage(targetPage, direction);
       if (STATE.viewMode === 'pdf') {
         return;
       }
@@ -732,6 +762,7 @@
       if (sheet) {
         sheet.scrollIntoView({ behavior: 'smooth', block: 'start' });
         highlightPageSheet(sheet);
+        triggerPageTurnAnimation(sheet, direction || 'next');
         return;
       }
     }
@@ -745,9 +776,31 @@
         if (sheet) {
           sheet.scrollIntoView({ behavior: 'smooth', block: 'start' });
           highlightPageSheet(sheet);
+          triggerPageTurnAnimation(sheet, direction || 'next');
         }
       }, 120);
     }
+  }
+
+  function triggerPageTurnAnimation(element, direction) {
+    if (!element) return;
+    const animMode = STATE.settings.pageAnimation || 'fold';
+    if (animMode === 'none') return;
+
+    let animClass = '';
+    if (animMode === 'fold') {
+      animClass = (direction === 'next') ? 'page-turning-next' : 'page-turning-prev';
+    } else if (animMode === 'slide') {
+      animClass = (direction === 'next') ? 'page-sliding-next' : 'page-sliding-prev';
+    }
+
+    element.classList.remove('page-turning-next', 'page-turning-prev', 'page-sliding-next', 'page-sliding-prev');
+    void element.offsetWidth; // Force reflow
+    element.classList.add(animClass);
+
+    setTimeout(() => {
+      element.classList.remove(animClass);
+    }, 560);
   }
 
   function highlightPageSheet(sheet) {
@@ -758,6 +811,146 @@
       sheet.style.borderColor = '';
       sheet.style.boxShadow = '';
     }, 1800);
+  }
+
+  // --- Touch Gesture Navigation Engine (Swipe & 3D Paper Fold) ---
+  function setupTouchGestures() {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let currentTargetSheet = null;
+
+    function onTouchStart(e) {
+      if (e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+
+      if (STATE.viewMode === 'html') {
+        const elAtPoint = document.elementFromPoint(touchStartX, touchStartY);
+        currentTargetSheet = elAtPoint ? elAtPoint.closest('.book-page-sheet') : null;
+      } else {
+        currentTargetSheet = el.pdfPageWrapper;
+      }
+    }
+
+    function onTouchMove(e) {
+      if (e.touches.length !== 1 || !touchStartX) return;
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const deltaX = currentX - touchStartX;
+      const deltaY = currentY - touchStartY;
+
+      // Only give visual feedback if horizontal swipe is clearly dominant
+      if (Math.abs(deltaX) > 20 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+        if (STATE.settings.pageAnimation !== 'none' && currentTargetSheet) {
+          if (deltaX < -15) {
+            currentTargetSheet.classList.add('touch-swiping-left');
+            currentTargetSheet.classList.remove('touch-swiping-right');
+          } else if (deltaX > 15) {
+            currentTargetSheet.classList.add('touch-swiping-right');
+            currentTargetSheet.classList.remove('touch-swiping-left');
+          }
+        }
+      }
+    }
+
+    function onTouchEnd(e) {
+      if (!touchStartX) return;
+      const touchEndX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : touchStartX;
+      const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+      const duration = Date.now() - touchStartTime;
+
+      if (currentTargetSheet) {
+        currentTargetSheet.classList.remove('touch-swiping-left', 'touch-swiping-right');
+      }
+
+      const minSwipeDist = 45; // pixels
+      const maxDuration = 650; // ms
+
+      if (Math.abs(deltaX) >= minSwipeDist && Math.abs(deltaX) > Math.abs(deltaY) * 1.25 && duration < maxDuration) {
+        if (deltaX < 0) {
+          // Swiped Left -> Advance to Next Page
+          handleSwipeNavigation('next');
+        } else {
+          // Swiped Right -> Go to Previous Page
+          handleSwipeNavigation('prev');
+        }
+      }
+
+      touchStartX = 0;
+      touchStartY = 0;
+      currentTargetSheet = null;
+    }
+
+    [el.viewport, el.pdfCanvasContainer].forEach(target => {
+      if (!target) return;
+      target.addEventListener('touchstart', onTouchStart, { passive: true });
+      target.addEventListener('touchmove', onTouchMove, { passive: true });
+      target.addEventListener('touchend', onTouchEnd, { passive: true });
+      target.addEventListener('touchcancel', onTouchEnd, { passive: true });
+    });
+  }
+
+  function handleSwipeNavigation(direction) {
+    if (STATE.viewMode === 'pdf') {
+      if (direction === 'next') {
+        if (STATE.pdf.page < STATE.pdf.totalPages) {
+          jumpToPage(STATE.pdf.page + 1, 'next');
+        } else {
+          navigateChapter(1);
+        }
+      } else {
+        if (STATE.pdf.page > 1) {
+          jumpToPage(STATE.pdf.page - 1, 'prev');
+        } else {
+          navigateChapter(-1);
+        }
+      }
+      return;
+    }
+
+    // HTML Mode:
+    const sheets = Array.from(document.querySelectorAll('.book-page-sheet'));
+    if (!sheets.length) {
+      if (direction === 'next') navigateChapter(1);
+      else navigateChapter(-1);
+      return;
+    }
+
+    // Find sheet closest to current viewport top/center
+    const viewportTargetY = window.innerHeight * 0.35;
+    let activeSheetIdx = 0;
+    let minDistance = Infinity;
+
+    sheets.forEach((sheet, idx) => {
+      const rect = sheet.getBoundingClientRect();
+      const dist = Math.abs(rect.top - viewportTargetY);
+      if (dist < minDistance) {
+        minDistance = dist;
+        activeSheetIdx = idx;
+      }
+    });
+
+    if (direction === 'next') {
+      if (activeSheetIdx < sheets.length - 1) {
+        const nextSheet = sheets[activeSheetIdx + 1];
+        const pageNum = parseInt(nextSheet.dataset.page, 10);
+        jumpToPage(pageNum, 'next');
+      } else {
+        navigateChapter(1);
+      }
+    } else {
+      if (activeSheetIdx > 0) {
+        const prevSheet = sheets[activeSheetIdx - 1];
+        const pageNum = parseInt(prevSheet.dataset.page, 10);
+        jumpToPage(pageNum, 'prev');
+      } else {
+        navigateChapter(-1);
+      }
+    }
   }
 
   // --- Drawer Rendering ---
@@ -1159,6 +1352,17 @@
       saveSettings();
       applySettings();
     });
+
+    // Page Turn Animation
+    if (el.animationGroup) {
+      el.animationGroup.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-group-item');
+        if (!btn) return;
+        STATE.settings.pageAnimation = btn.dataset.anim;
+        saveSettings();
+        applySettings();
+      });
+    }
     
     // Font Size Stepper
     el.btnFontDecrease.addEventListener('click', () => {
@@ -1289,6 +1493,9 @@
       }
     }, { passive: true });
     
+    // Touch Swipe & Gestures Setup
+    setupTouchGestures();
+
     // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       if (document.activeElement === el.searchQueryInput || document.activeElement === el.pdfInputPage || document.activeElement === el.inputJumpPage) {
@@ -1301,22 +1508,28 @@
       
       switch (e.key) {
         case 'ArrowLeft':
-        case 'PageUp':
           e.preventDefault();
           if (STATE.viewMode === 'pdf') {
-            renderPdfPage(STATE.pdf.page - 1);
+            jumpToPage(STATE.pdf.page - 1, 'prev');
           } else {
-            navigateChapter(-1);
+            handleSwipeNavigation('prev');
           }
           break;
         case 'ArrowRight':
-        case 'PageDown':
           e.preventDefault();
           if (STATE.viewMode === 'pdf') {
-            renderPdfPage(STATE.pdf.page + 1);
+            jumpToPage(STATE.pdf.page + 1, 'next');
           } else {
-            navigateChapter(1);
+            handleSwipeNavigation('next');
           }
+          break;
+        case 'PageUp':
+          e.preventDefault();
+          navigateChapter(-1);
+          break;
+        case 'PageDown':
+          e.preventDefault();
+          navigateChapter(1);
           break;
         case '+':
         case '=':

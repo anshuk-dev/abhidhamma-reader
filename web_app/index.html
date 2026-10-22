@@ -6,6 +6,10 @@
   <title>Abhidhamma Reader · Ancient Buddhist Texts</title>
   <meta name="description" content="A minimalist, soft visual reader for the Seven Books of the Abhidhamma Piṭaka and Buddhist texts.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Google Fonts: Gentium Book Plus & Crimson Pro with native, complete Pali & Sanskrit diacritics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400..700;1,400..700&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -319,11 +323,21 @@
 
       <!-- Typography Font Family -->
       <div class="setting-section">
-        <div class="setting-label">Font Style</div>
+        <div class="setting-label">Typography & Diacritics</div>
         <div class="btn-group" id="font-family-group">
-          <button class="btn-group-item active" data-font="serif" style="font-family: Georgia, serif;">Serif</button>
+          <button class="btn-group-item active" data-font="gentium" style="font-family: 'Gentium Book Plus', Georgia, serif;">Gentium (Pāli)</button>
+          <button class="btn-group-item" data-font="crimson" style="font-family: 'Crimson Pro', Georgia, serif;">Crimson</button>
           <button class="btn-group-item" data-font="sans" style="font-family: system-ui, sans-serif;">Sans</button>
-          <button class="btn-group-item" data-font="mono" style="font-family: monospace;">Mono</button>
+        </div>
+      </div>
+
+      <!-- Page Turn Animation (Realistic 3D Paper Fold / Slide) -->
+      <div class="setting-section">
+        <div class="setting-label">Page Turn Effect</div>
+        <div class="btn-group" id="animation-group">
+          <button class="btn-group-item active" data-anim="fold">Paper Fold 3D</button>
+          <button class="btn-group-item" data-anim="slide">Slide</button>
+          <button class="btn-group-item" data-anim="none">None</button>
         </div>
       </div>
 

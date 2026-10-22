@@ -7,7 +7,7 @@
   --reader-max-width: 760px;
   --reader-font-size: 19px;
   --reader-line-height: 1.8;
-  --reader-font-family: 'Newsreader', 'Charter', Georgia, Cambria, 'Times New Roman', serif;
+  --reader-font-family: 'Gentium Book Plus', 'Crimson Pro', Georgia, 'Times New Roman', serif;
   --reader-text-align: left;
   
   /* Top Bar & Drawer Dimensions */
@@ -690,6 +690,8 @@ a:hover {
   max-width: var(--reader-max-width);
   padding: 32px 20px 60px;
   margin: 0 auto;
+  perspective: 2000px;
+  perspective-origin: center center;
 }
 
 /* Chapter Presentation */
@@ -760,7 +762,46 @@ a:hover {
   display: flex;
   flex-direction: column;
   position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Spine Crease Shadow & Realistic Leaf Edge Curl */
+.book-page-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 40%, transparent 100%);
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  z-index: 2;
+}
+
+.book-page-sheet::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+  z-index: 2;
+}
+
+[data-theme="obsidian"] .book-page-sheet::before {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 100%);
+}
+
+[data-theme="obsidian"] .book-page-sheet::after {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.28) 0%, transparent 100%);
 }
 
 @media (max-width: 640px) {
@@ -1327,6 +1368,8 @@ mark {
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
   touch-action: pan-x pan-y pinch-zoom;
   outline: none;
+  perspective: 2000px;
+  perspective-origin: center center;
 }
 
 .pdf-page-wrapper {
@@ -1335,8 +1378,10 @@ mark {
   border-radius: 4px;
   overflow: hidden;
   background-color: #ffffff;
-  transition: transform 0.12s ease-out;
+  transition: transform 0.15s ease-out;
   transform-origin: top center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 [data-theme="obsidian"] .pdf-page-wrapper {
@@ -1853,3 +1898,79 @@ mark {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* ==========================================================================
+   Realistic 3D Paper Folding & Page Curl Animation Engine
+   ========================================================================== */
+
+/* 3D Paper Fold Next Page (Turning page to the left like turning book leaf) */
+.page-turning-next {
+  animation: paperTurnNext 0.52s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: left center !important;
+  will-change: transform, box-shadow;
+}
+
+@keyframes paperTurnNext {
+  0% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(0);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  }
+  38% {
+    transform: perspective(2000px) rotateY(-24deg) translateZ(28px) skewY(-1.2deg);
+    box-shadow: -16px 14px 30px rgba(0, 0, 0, 0.16);
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(0);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* 3D Paper Fold Previous Page (Turning page from left to right) */
+.page-turning-prev {
+  animation: paperTurnPrev 0.52s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: right center !important;
+  will-change: transform, box-shadow;
+}
+
+@keyframes paperTurnPrev {
+  0% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(0);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  }
+  38% {
+    transform: perspective(2000px) rotateY(24deg) translateZ(28px) skewY(1.2deg);
+    box-shadow: 16px 14px 30px rgba(0, 0, 0, 0.16);
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(0);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* Smooth Slide Alternative */
+.page-sliding-next {
+  animation: pageSlideNext 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes pageSlideNext {
+  0% { transform: translateX(50px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.page-sliding-prev {
+  animation: pageSlidePrev 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes pageSlidePrev {
+  0% { transform: translateX(-50px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Touch Gesture Drag Visual Feedback */
+.touch-swiping-left {
+  transform: perspective(2000px) rotateY(-8deg) translateX(-18px) !important;
+  transition: transform 0.08s ease-out !important;
+}
+.touch-swiping-right {
+  transform: perspective(2000px) rotateY(8deg) translateX(18px) !important;
+  transition: transform 0.08s ease-out !important;
+}
+
