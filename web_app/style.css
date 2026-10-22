@@ -1361,6 +1361,7 @@ mark {
   min-height: 640px;
   width: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -1384,6 +1385,98 @@ mark {
   backface-visibility: hidden;
 }
 
+/* Authentic physical book spine & edge shadow gradients on PDF leaf */
+.pdf-page-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 22px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pdf-page-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Double-buffered 3D Page Turn Leaf for PDF */
+.pdf-flip-leaf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+}
+
+.pdf-flip-leaf canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pdf-flip-leaf.flip-next {
+  animation: pdfLeafFlipNext 0.46s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: left center !important;
+}
+
+@keyframes pdfLeafFlipNext {
+  0% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(1px);
+    opacity: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+  }
+  45% {
+    transform: perspective(2000px) rotateY(-40deg) translateZ(45px) skewY(-1.8deg);
+    opacity: 0.95;
+    filter: drop-shadow(-18px 14px 28px rgba(0, 0, 0, 0.28));
+  }
+  100% {
+    transform: perspective(2000px) rotateY(-85deg) translateZ(85px) skewY(-3.5deg);
+    opacity: 0;
+    filter: drop-shadow(-28px 20px 38px rgba(0, 0, 0, 0.4));
+  }
+}
+
+.pdf-flip-leaf.flip-prev {
+  animation: pdfLeafFlipPrev 0.46s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform-origin: right center !important;
+}
+
+@keyframes pdfLeafFlipPrev {
+  0% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(1px);
+    opacity: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+  }
+  45% {
+    transform: perspective(2000px) rotateY(40deg) translateZ(45px) skewY(1.8deg);
+    opacity: 0.95;
+    filter: drop-shadow(18px 14px 28px rgba(0, 0, 0, 0.28));
+  }
+  100% {
+    transform: perspective(2000px) rotateY(85deg) translateZ(85px) skewY(3.5deg);
+    opacity: 0;
+    filter: drop-shadow(28px 20px 38px rgba(0, 0, 0, 0.4));
+  }
+}
+
 [data-theme="obsidian"] .pdf-page-wrapper {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
   filter: brightness(0.92) contrast(1.05);
@@ -1402,7 +1495,8 @@ mark {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(var(--bg-primary), 0.7);
+  background-color: var(--bg-surface);
+  opacity: 0.92;
   backdrop-filter: blur(4px);
   z-index: 10;
   gap: 12px;
@@ -1973,4 +2067,40 @@ mark {
   transform: perspective(2000px) rotateY(8deg) translateX(18px) !important;
   transition: transform 0.08s ease-out !important;
 }
+
+/* Floating Resume Reading & Soft Scroll Action Toast */
+.reader-toast-pill {
+  position: fixed;
+  bottom: calc(var(--bottom-bar-height) + 20px);
+  left: 50%;
+  transform: translateX(-50%) translateY(24px) scale(0.96);
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reader-toast-pill.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.reader-toast-icon {
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+}
+
 

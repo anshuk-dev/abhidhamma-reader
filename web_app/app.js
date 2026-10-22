@@ -7,10 +7,18 @@
 (function () {
   'use strict';
 
-  // --- Initialize PDF.js Worker ---
+  // --- Initialize PDF.js Worker with robust absolute path ---
   if (window.pdfjsLib) {
-    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
+    try {
+      const workerUrl = new URL('vendor/pdf.worker.min.js', window.location.href).href;
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+    } catch (e) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
+    }
   }
+
+  // --- In-Memory PDF Document Cache (Instant 0ms switching) ---
+  const pdfDocCache = new Map();
 
   // --- Application State ---
   const STATE = {
@@ -136,7 +144,11 @@
     btnOpenSearch: document.getElementById('btn-open-search'),
     btnCloseSearch: document.getElementById('btn-close-search'),
     searchQueryInput: document.getElementById('search-query-input'),
-    searchResultsList: document.getElementById('search-results-list')
+    searchResultsList: document.getElementById('search-results-list'),
+
+    // Toast Notification
+    readerToast: document.getElementById('reader-toast'),
+    readerToastText: document.getElementById('reader-toast-text')
   };
 
   // --- Application Bootstrapping ---
@@ -153,11 +165,9 @@
     const initialPage = (lastPos && lastPos.page) ? parseInt(lastPos.page, 10) : 1;
     STATE.currentPageNumber = initialPage;
     
-    await selectBook(initialBook, initialChapter, lastPos ? lastPos.scrollY : 0);
-
     // Restore reading mode (default: html)
     const savedMode = (STATE.settings && STATE.settings.viewMode) ? STATE.settings.viewMode : 'html';
-    setReadingMode(savedMode);
+    await selectBook(initialBook, initialChapter, lastPos ? lastPos.scrollY : 0, savedMode);
   }
 
   // --- Settings Persistence ---
@@ -197,15 +207,66 @@
 
   function saveLastPosition() {
     try {
-      localStorage.setItem(STORAGE_KEY_POSITION, JSON.stringify({
+      const posData = {
         bookId: STATE.activeBookId,
         chapterId: STATE.activeChapterId,
         page: STATE.currentPageNumber,
-        scrollY: window.scrollY
-      }));
+        scrollY: window.scrollY,
+        mode: STATE.viewMode,
+        pdfPage: STATE.pdf.page || STATE.currentPageNumber || 1,
+        pdfScrollTop: el.pdfCanvasContainer ? Math.round(el.pdfCanvasContainer.scrollTop) : 0,
+        timestamp: Date.now()
+      };
+      localStorage.setItem(STORAGE_KEY_POSITION, JSON.stringify(posData));
+      if (STATE.activeBookId) {
+        localStorage.setItem(`abhidhamma_pos_${STATE.activeBookId}`, JSON.stringify(posData));
+      }
     } catch (e) {
       // ignore
     }
+  }
+
+  function loadBookPosition(bookId) {
+    if (!bookId) return null;
+    try {
+      const saved = localStorage.getItem(`abhidhamma_pos_${bookId}`);
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function savePdfPosition(bookId, page, scrollTop = null) {
+    if (!bookId) return;
+    try {
+      const curScroll = (scrollTop !== null) ? Math.round(scrollTop) : (el.pdfCanvasContainer ? Math.round(el.pdfCanvasContainer.scrollTop) : 0);
+      const posData = {
+        bookId: bookId,
+        page: page || STATE.pdf.page || 1,
+        pdfPage: page || STATE.pdf.page || 1,
+        pdfScrollTop: curScroll,
+        scale: STATE.pdf.scale,
+        mode: 'pdf',
+        timestamp: Date.now()
+      };
+      localStorage.setItem(`abhidhamma_pos_${bookId}`, JSON.stringify(posData));
+    } catch (e) {}
+  }
+
+  // Soft Floating Toast Notification
+  let toastTimer = null;
+  function showReaderToast(message, duration = 2500) {
+    const toast = el.readerToast || document.getElementById('reader-toast');
+    const toastText = el.readerToastText || document.getElementById('reader-toast-text');
+    if (!toast || !toastText) return;
+
+    toastText.textContent = message;
+    toast.classList.add('visible');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('visible');
+    }, duration);
   }
 
   // --- Apply Settings to Document ---
@@ -325,13 +386,23 @@
     }
 
     if (mode === 'pdf' || mode === 'split') {
-      const targetPage = STATE.currentPageNumber || 1;
+      const savedPos = loadBookPosition(STATE.activeBookId);
+      const targetPage = savedPos?.pdfPage || savedPos?.page || STATE.currentPageNumber || 1;
       await loadPdfForBook(STATE.activeBookId);
       await renderPdfPage(targetPage);
+      if (savedPos && savedPos.pdfScrollTop > 10) {
+        setTimeout(() => {
+          if (el.pdfCanvasContainer) {
+            el.pdfCanvasContainer.scrollTo({ top: savedPos.pdfScrollTop, behavior: 'smooth' });
+          }
+        }, 100);
+      }
+      showReaderToast(`PDF View · Page ${targetPage}`);
     } else {
-      // Switched back to HTML: ensure current page is in view
+      // Switched back to HTML: ensure current page is in view and softly scroll
       if (STATE.pdf.page) {
         jumpToPage(STATE.pdf.page);
+        showReaderToast(`Text View · Page ${STATE.pdf.page}`);
       }
     }
   }
@@ -350,26 +421,55 @@
       return STATE.pdf.doc;
     }
 
+    if (pdfDocCache.has(bookId)) {
+      const cached = pdfDocCache.get(bookId);
+      STATE.pdf.doc = cached;
+      STATE.pdf.bookId = bookId;
+      STATE.pdf.totalPages = cached.numPages;
+      if (el.pdfTotalPages) el.pdfTotalPages.textContent = String(cached.numPages);
+      if (el.pdfInputPage) el.pdfInputPage.max = String(cached.numPages);
+      hidePdfLoading();
+      return cached;
+    }
+
     showPdfLoading('Opening authentic PDF document...');
+    const pdfUrl = `pdfs/${bookId}.pdf`;
+    
+    // Update download link
+    if (el.btnPdfDownload) {
+      el.btnPdfDownload.href = pdfUrl;
+      el.btnPdfDownload.download = `${bookId}.pdf`;
+    }
+
+    if (!window.pdfjsLib) {
+      showPdfLoading('PDF viewer engine not loaded');
+      return null;
+    }
+
     try {
-      const pdfUrl = `pdfs/${bookId}.pdf`;
-      
-      // Update download link
-      if (el.btnPdfDownload) {
-        el.btnPdfDownload.href = pdfUrl;
-        el.btnPdfDownload.download = `${bookId}.pdf`;
+      let doc = null;
+      try {
+        const loadingTask = window.pdfjsLib.getDocument({
+          url: pdfUrl,
+          cMapPacked: true,
+          enableXfa: false
+        });
+        doc = await loadingTask.promise;
+      } catch (streamErr) {
+        console.warn('Direct stream load fallback, fetching ArrayBuffer directly:', streamErr);
+        // Fast direct ArrayBuffer fetch fallback
+        const resp = await fetch(pdfUrl);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const buffer = await resp.arrayBuffer();
+        const loadingTask = window.pdfjsLib.getDocument({
+          data: buffer,
+          cMapPacked: true,
+          enableXfa: false
+        });
+        doc = await loadingTask.promise;
       }
 
-      if (!window.pdfjsLib) {
-        throw new Error('PDF.js library is not loaded');
-      }
-
-      const loadingTask = window.pdfjsLib.getDocument({
-        url: pdfUrl,
-        cMapPacked: true
-      });
-
-      const doc = await loadingTask.promise;
+      pdfDocCache.set(bookId, doc);
       STATE.pdf.doc = doc;
       STATE.pdf.bookId = bookId;
       STATE.pdf.totalPages = doc.numPages;
@@ -402,14 +502,18 @@
       direction = pageNum > prevPdfPage ? 'next' : 'prev';
     }
 
+    // Double-buffered 3D Page Turn Animation
+    if (direction && el.pdfMainCanvas && el.pdfPageWrapper && el.pdfMainCanvas.width > 0 && STATE.settings.pageAnimation !== 'none') {
+      try {
+        createPdfFlipLeaf(el.pdfMainCanvas, el.pdfPageWrapper, direction);
+      } catch (e) {
+        console.warn('Page flip leaf error:', e);
+      }
+    }
+
     STATE.pdf.isRendering = true;
     STATE.pdf.page = pageNum;
     STATE.currentPageNumber = pageNum;
-
-    // Trigger 3D paper fold animation on PDF wrapper
-    if (el.pdfPageWrapper && direction) {
-      triggerPageTurnAnimation(el.pdfPageWrapper, direction);
-    }
 
     // Sync controls
     if (el.pdfInputPage) el.pdfInputPage.value = pageNum;
@@ -425,7 +529,10 @@
     if (el.progressBar) el.progressBar.style.width = `${pct}%`;
     if (el.progressPill) el.progressPill.textContent = `${pct}%`;
 
-    showPdfLoading('Rendering folio...');
+    // Only show loading if canvas is empty (initial load)
+    if (!el.pdfMainCanvas || el.pdfMainCanvas.width === 0) {
+      showPdfLoading('Rendering folio...');
+    }
 
     try {
       const page = await STATE.pdf.doc.getPage(pageNum);
@@ -479,6 +586,10 @@
       STATE.pdf.renderTask = null;
       hidePdfLoading();
       saveLastPosition();
+      savePdfPosition(STATE.activeBookId, pageNum);
+
+      // Preload adjacent pages in memory for 0ms turns
+      preloadAdjacentPdfPages(pageNum);
 
     } catch (err) {
       if (err.name !== 'RenderingCancelledException') {
@@ -492,6 +603,40 @@
         renderPdfPage(next);
       }
     }
+  }
+
+  function createPdfFlipLeaf(sourceCanvas, wrapper, direction) {
+    if (!sourceCanvas || !wrapper || sourceCanvas.width === 0) return;
+
+    wrapper.querySelectorAll('.pdf-flip-leaf').forEach(l => l.remove());
+
+    const leaf = document.createElement('div');
+    leaf.className = `pdf-flip-leaf ${direction === 'next' ? 'flip-next' : 'flip-prev'}`;
+
+    const leafCanvas = document.createElement('canvas');
+    leafCanvas.width = sourceCanvas.width;
+    leafCanvas.height = sourceCanvas.height;
+    leafCanvas.style.width = sourceCanvas.style.width;
+    leafCanvas.style.height = sourceCanvas.style.height;
+
+    const ctx = leafCanvas.getContext('2d');
+    ctx.drawImage(sourceCanvas, 0, 0);
+
+    leaf.appendChild(leafCanvas);
+    wrapper.appendChild(leaf);
+
+    setTimeout(() => {
+      leaf.remove();
+    }, 480);
+  }
+
+  function preloadAdjacentPdfPages(currentPage) {
+    if (!STATE.pdf.doc) return;
+    [currentPage + 1, currentPage - 1].forEach(p => {
+      if (p >= 1 && p <= STATE.pdf.totalPages) {
+        STATE.pdf.doc.getPage(p).catch(() => {});
+      }
+    });
   }
 
   function showPdfLoading(msg) {
@@ -537,11 +682,33 @@
     }
   }
 
-  async function selectBook(bookId, targetChapterId = null, scrollY = 0) {
+  async function selectBook(bookId, targetChapterId = null, scrollY = 0, preferredMode = null) {
     if (!STATE.library) return;
     
     STATE.activeBookId = bookId;
     el.headerBookTitle.textContent = 'Loading...';
+
+    if (preferredMode) {
+      STATE.viewMode = preferredMode;
+      STATE.settings.viewMode = preferredMode;
+      saveSettings();
+    }
+    const currentMode = STATE.viewMode || 'html';
+    
+    // Update container classes for mode
+    if (el.appMain) {
+      el.appMain.classList.remove('mode-html', 'mode-pdf', 'mode-split');
+      el.appMain.classList.add(`mode-${currentMode}`);
+    }
+    if (el.btnModeHtml) el.btnModeHtml.classList.toggle('active', currentMode === 'html');
+    if (el.btnModePdf) el.btnModePdf.classList.toggle('active', currentMode === 'pdf');
+    if (el.btnModeSplit) el.btnModeSplit.classList.toggle('active', currentMode === 'split');
+    if (el.btnQuickPdfToggle) {
+      el.btnQuickPdfToggle.classList.toggle('active', currentMode !== 'html');
+      if (el.mobilePdfToggleLabel) {
+        el.mobilePdfToggleLabel.textContent = (currentMode === 'html') ? 'PDF' : 'Text';
+      }
+    }
     
     try {
       const resp = await fetch(`data/books/${bookId}/manifest.json`);
@@ -570,16 +737,29 @@
       // Render TOC for this book
       renderDrawerBookToc();
       
+      // Check saved position for this book
+      const savedPos = loadBookPosition(bookId);
+      const targetPdfPage = (savedPos?.pdfPage || savedPos?.page) || STATE.currentPageNumber || 1;
+
       // If currently in PDF or Split mode, load PDF
-      if (STATE.viewMode === 'pdf' || STATE.viewMode === 'split') {
+      if (currentMode === 'pdf' || currentMode === 'split') {
         await loadPdfForBook(bookId);
-        await renderPdfPage(STATE.currentPageNumber || 1);
+        await renderPdfPage(targetPdfPage);
+        if (savedPos && savedPos.pdfScrollTop > 10) {
+          setTimeout(() => {
+            if (el.pdfCanvasContainer) {
+              el.pdfCanvasContainer.scrollTo({ top: savedPos.pdfScrollTop, behavior: 'smooth' });
+            }
+          }, 120);
+        }
+        showReaderToast(`Resumed PDF at Page ${targetPdfPage}`);
       }
 
       // Select chapter for HTML reader
       const firstChapterId = STATE.activeManifest.chapters[0]?.id;
       const chapterToLoad = targetChapterId || firstChapterId;
-      await loadChapter(chapterToLoad, scrollY);
+      const targetScrollY = scrollY || (savedPos?.scrollY || 0);
+      await loadChapter(chapterToLoad, targetScrollY);
       
     } catch (err) {
       console.error(`Failed to load manifest for ${bookId}:`, err);
@@ -747,9 +927,12 @@
     if (el.pageSliderRange) el.pageSliderRange.value = targetPage;
     if (el.inputJumpPage) el.inputJumpPage.value = targetPage;
 
-    // In PDF or Split mode, render PDF page immediately
+    // In PDF or Split mode, render PDF page immediately with 3D paper fold transition
     if (STATE.viewMode === 'pdf' || STATE.viewMode === 'split') {
       await renderPdfPage(targetPage, direction);
+      if (el.pdfCanvasContainer) {
+        el.pdfCanvasContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       if (STATE.viewMode === 'pdf') {
         return;
       }
@@ -900,13 +1083,13 @@
         if (STATE.pdf.page < STATE.pdf.totalPages) {
           jumpToPage(STATE.pdf.page + 1, 'next');
         } else {
-          navigateChapter(1);
+          showReaderToast('End of book');
         }
       } else {
         if (STATE.pdf.page > 1) {
           jumpToPage(STATE.pdf.page - 1, 'prev');
         } else {
-          navigateChapter(-1);
+          showReaderToast('First page of book');
         }
       }
       return;
@@ -972,9 +1155,9 @@
         </div>
       `;
       
-      btn.addEventListener('click', () => {
-        selectBook(book.id);
-        switchDrawerTab('tab-active-toc');
+      btn.addEventListener('click', async () => {
+        closeDrawer();
+        await selectBook(book.id);
       });
       
       el.abhidhammaBooksList.appendChild(btn);
@@ -1060,25 +1243,21 @@
           </div>
         `;
         
-        card.querySelector('.read-html-btn').addEventListener('click', (e) => {
+        card.querySelector('.read-html-btn').addEventListener('click', async (e) => {
           e.stopPropagation();
-          selectBook(item.id);
-          setReadingMode('html');
-          switchDrawerTab('tab-active-toc');
           closeDrawer();
+          await selectBook(item.id, null, 0, 'html');
         });
 
-        card.querySelector('.open-pdf-btn').addEventListener('click', (e) => {
+        card.querySelector('.open-pdf-btn').addEventListener('click', async (e) => {
           e.stopPropagation();
-          selectBook(item.id);
-          setReadingMode('pdf');
           closeDrawer();
+          await selectBook(item.id, null, 0, 'pdf');
         });
 
-        card.addEventListener('click', () => {
-          selectBook(item.id);
-          switchDrawerTab('tab-active-toc');
+        card.addEventListener('click', async () => {
           closeDrawer();
+          await selectBook(item.id);
         });
 
         container.appendChild(card);
@@ -1228,15 +1407,15 @@
     if (el.btnPdfZoomOut) el.btnPdfZoomOut.addEventListener('click', () => zoomPdf(0.83));
     if (el.btnPdfFitWidth) el.btnPdfFitWidth.addEventListener('click', fitPdfWidth);
     if (el.btnPdfFitPage) el.btnPdfFitPage.addEventListener('click', fitPdfPage);
-    if (el.btnPdfPrevPage) el.btnPdfPrevPage.addEventListener('click', () => renderPdfPage(STATE.pdf.page - 1));
-    if (el.btnPdfNextPage) el.btnPdfNextPage.addEventListener('click', () => renderPdfPage(STATE.pdf.page + 1));
+    if (el.btnPdfPrevPage) el.btnPdfPrevPage.addEventListener('click', () => jumpToPage(STATE.pdf.page - 1, 'prev'));
+    if (el.btnPdfNextPage) el.btnPdfNextPage.addEventListener('click', () => jumpToPage(STATE.pdf.page + 1, 'next'));
     
     if (el.pdfInputPage) {
       el.pdfInputPage.addEventListener('change', (e) => {
-        renderPdfPage(e.target.value);
+        jumpToPage(e.target.value);
       });
       el.pdfInputPage.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') renderPdfPage(e.target.value);
+        if (e.key === 'Enter') jumpToPage(e.target.value);
       });
     }
 
@@ -1292,6 +1471,18 @@
           zoomPdf(factor);
         }
       }, { passive: false });
+
+      // Track scroll position in PDF for soft resumption
+      let pdfScrollDebounce = null;
+      el.pdfCanvasContainer.addEventListener('scroll', () => {
+        clearTimeout(pdfScrollDebounce);
+        pdfScrollDebounce = setTimeout(() => {
+          if (STATE.viewMode === 'pdf' || STATE.viewMode === 'split') {
+            savePdfPosition(STATE.activeBookId, STATE.pdf.page, el.pdfCanvasContainer.scrollTop);
+            saveLastPosition();
+          }
+        }, 200);
+      }, { passive: true });
     }
 
     // Drawer Toggles
@@ -1541,6 +1732,35 @@
         case '_':
           if (STATE.viewMode === 'pdf' || STATE.viewMode === 'split') {
             zoomPdf(0.83);
+          }
+          break;
+        case ' ':
+          e.preventDefault();
+          const scrollDistance = window.innerHeight * 0.65;
+          if (e.shiftKey) {
+            if (STATE.viewMode === 'pdf') {
+              el.pdfCanvasContainer.scrollBy({ top: -scrollDistance, behavior: 'smooth' });
+            } else {
+              window.scrollBy({ top: -scrollDistance, behavior: 'smooth' });
+            }
+          } else {
+            if (STATE.viewMode === 'pdf') {
+              el.pdfCanvasContainer.scrollBy({ top: scrollDistance, behavior: 'smooth' });
+            } else {
+              window.scrollBy({ top: scrollDistance, behavior: 'smooth' });
+            }
+          }
+          break;
+        case 'ArrowDown':
+          if (STATE.viewMode === 'pdf') {
+            e.preventDefault();
+            el.pdfCanvasContainer.scrollBy({ top: 120, behavior: 'smooth' });
+          }
+          break;
+        case 'ArrowUp':
+          if (STATE.viewMode === 'pdf') {
+            e.preventDefault();
+            el.pdfCanvasContainer.scrollBy({ top: -120, behavior: 'smooth' });
           }
           break;
         case 'j':
