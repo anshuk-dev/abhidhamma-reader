@@ -20,6 +20,58 @@
   // --- In-Memory PDF Document Cache (Instant 0ms switching) ---
   const pdfDocCache = new Map();
 
+  // --- Persistent IndexedDB Client-Side PDF Cache (Instant offline / reload open) ---
+  const PDF_DB_NAME = 'AbhidhammaPdfCache';
+  const PDF_STORE_NAME = 'pdfs';
+
+  function openPdfDatabase() {
+    return new Promise((resolve) => {
+      if (!window.indexedDB) {
+        resolve(null);
+        return;
+      }
+      try {
+        const request = indexedDB.open(PDF_DB_NAME, 1);
+        request.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(PDF_STORE_NAME)) {
+            db.createObjectStore(PDF_STORE_NAME);
+          }
+        };
+        request.onsuccess = (e) => resolve(e.target.result);
+        request.onerror = () => resolve(null);
+      } catch (err) {
+        resolve(null);
+      }
+    });
+  }
+
+  async function getCachedPdfBuffer(bookId) {
+    try {
+      const db = await openPdfDatabase();
+      if (!db) return null;
+      return new Promise((resolve) => {
+        const tx = db.transaction(PDF_STORE_NAME, 'readonly');
+        const store = tx.objectStore(PDF_STORE_NAME);
+        const req = store.get(bookId);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => resolve(null);
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function setCachedPdfBuffer(bookId, arrayBuffer) {
+    try {
+      const db = await openPdfDatabase();
+      if (!db) return;
+      const tx = db.transaction(PDF_STORE_NAME, 'readwrite');
+      const store = tx.objectStore(PDF_STORE_NAME);
+      store.put(arrayBuffer, bookId);
+    } catch (e) {}
+  }
+
   // --- Application State ---
   const STATE = {
     library: null,
@@ -415,12 +467,78 @@
     }
   }
 
-  // --- High-Performance Embedded PDF Engine ---
+  // --- High-Performance Embedded PDF Engine (IndexedDB + Memory Cache + Progressive Stream) ---
+  const preloadingBookIds = new Set();
+
+  function preloadPdfForBook(bookId) {
+    if (!bookId || preloadingBookIds.has(bookId) || pdfDocCache.has(bookId)) return;
+    preloadingBookIds.add(bookId);
+
+    setTimeout(async () => {
+      try {
+        let buffer = await getCachedPdfBuffer(bookId);
+        if (!buffer) {
+          const resp = await fetch(`pdfs/${bookId}.pdf`);
+          if (resp.ok) {
+            buffer = await resp.arrayBuffer();
+            await setCachedPdfBuffer(bookId, buffer);
+          }
+        }
+        if (buffer && !pdfDocCache.has(bookId) && window.pdfjsLib) {
+          const doc = await window.pdfjsLib.getDocument({
+            data: buffer,
+            cMapPacked: true,
+            enableXfa: false
+          }).promise;
+          pdfDocCache.set(bookId, doc);
+        }
+      } catch (e) {
+        // silent background preload
+      }
+    }, 400);
+  }
+
+  async function fetchPdfBufferWithProgress(pdfUrl, onProgress) {
+    const response = await fetch(pdfUrl);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    const contentLength = response.headers.get('content-length');
+    const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
+    
+    if (response.body && totalBytes > 0 && typeof ReadableStream !== 'undefined') {
+      const reader = response.body.getReader();
+      const chunks = [];
+      let receivedBytes = 0;
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        receivedBytes += value.length;
+        if (onProgress && totalBytes > 0) {
+          const pct = Math.min(99, Math.round((receivedBytes / totalBytes) * 100));
+          onProgress(pct, receivedBytes, totalBytes);
+        }
+      }
+      
+      const allChunks = new Uint8Array(receivedBytes);
+      let position = 0;
+      for (const chunk of chunks) {
+        allChunks.set(chunk, position);
+        position += chunk.length;
+      }
+      return allChunks.buffer;
+    } else {
+      return await response.arrayBuffer();
+    }
+  }
+
   async function loadPdfForBook(bookId) {
     if (STATE.pdf.bookId === bookId && STATE.pdf.doc) {
       return STATE.pdf.doc;
     }
 
+    // 1. Instant Memory Cache (0ms)
     if (pdfDocCache.has(bookId)) {
       const cached = pdfDocCache.get(bookId);
       STATE.pdf.doc = cached;
@@ -432,7 +550,6 @@
       return cached;
     }
 
-    showPdfLoading('Opening authentic PDF document...');
     const pdfUrl = `pdfs/${bookId}.pdf`;
     
     // Update download link
@@ -446,21 +563,31 @@
       return null;
     }
 
+    showPdfLoading('Opening authentic PDF document...');
+
     try {
       let doc = null;
-      try {
+
+      // 2. Check Persistent IndexedDB Cache (5ms from disk, no network!)
+      const cachedBuffer = await getCachedPdfBuffer(bookId);
+      if (cachedBuffer) {
+        showPdfLoading('Loading cached folio...');
         const loadingTask = window.pdfjsLib.getDocument({
-          url: pdfUrl,
+          data: cachedBuffer,
           cMapPacked: true,
           enableXfa: false
         });
         doc = await loadingTask.promise;
-      } catch (streamErr) {
-        console.warn('Direct stream load fallback, fetching ArrayBuffer directly:', streamErr);
-        // Fast direct ArrayBuffer fetch fallback
-        const resp = await fetch(pdfUrl);
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const buffer = await resp.arrayBuffer();
+      } else {
+        // 3. Fast direct fetch with real-time download progress
+        const buffer = await fetchPdfBufferWithProgress(pdfUrl, (pct) => {
+          showPdfLoading(`Downloading authentic folio (${pct}%)...`);
+        });
+
+        // Store into IndexedDB for zero-lag subsequent visits
+        setCachedPdfBuffer(bookId, buffer);
+
+        showPdfLoading('Rendering authentic folio...');
         const loadingTask = window.pdfjsLib.getDocument({
           data: buffer,
           cMapPacked: true,
@@ -710,6 +837,9 @@
       }
     }
     
+    // Silently pre-cache PDF in background for instant opening
+    preloadPdfForBook(bookId);
+
     try {
       const resp = await fetch(`data/books/${bookId}/manifest.json`);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -1155,6 +1285,7 @@
         </div>
       `;
       
+      btn.addEventListener('mouseenter', () => preloadPdfForBook(book.id), { passive: true });
       btn.addEventListener('click', async () => {
         closeDrawer();
         await selectBook(book.id);
@@ -1249,12 +1380,16 @@
           await selectBook(item.id, null, 0, 'html');
         });
 
-        card.querySelector('.open-pdf-btn').addEventListener('click', async (e) => {
+        const openPdfBtn = card.querySelector('.open-pdf-btn');
+        openPdfBtn.addEventListener('mouseenter', () => preloadPdfForBook(item.id), { passive: true });
+        openPdfBtn.addEventListener('touchstart', () => preloadPdfForBook(item.id), { passive: true });
+        openPdfBtn.addEventListener('click', async (e) => {
           e.stopPropagation();
           closeDrawer();
           await selectBook(item.id, null, 0, 'pdf');
         });
 
+        card.addEventListener('mouseenter', () => preloadPdfForBook(item.id), { passive: true });
         card.addEventListener('click', async () => {
           closeDrawer();
           await selectBook(item.id);
@@ -1397,9 +1532,16 @@
   function setupEventListeners() {
     // Mode Switcher Buttons
     if (el.btnModeHtml) el.btnModeHtml.addEventListener('click', () => setReadingMode('html'));
-    if (el.btnModePdf) el.btnModePdf.addEventListener('click', () => setReadingMode('pdf'));
+    if (el.btnModePdf) {
+      el.btnModePdf.addEventListener('click', () => setReadingMode('pdf'));
+      el.btnModePdf.addEventListener('mouseenter', () => preloadPdfForBook(STATE.activeBookId), { passive: true });
+      el.btnModePdf.addEventListener('touchstart', () => preloadPdfForBook(STATE.activeBookId), { passive: true });
+    }
     if (el.btnModeSplit) el.btnModeSplit.addEventListener('click', () => setReadingMode('split'));
-    if (el.btnQuickPdfToggle) el.btnQuickPdfToggle.addEventListener('click', togglePdfModeMobile);
+    if (el.btnQuickPdfToggle) {
+      el.btnQuickPdfToggle.addEventListener('click', togglePdfModeMobile);
+      el.btnQuickPdfToggle.addEventListener('touchstart', () => preloadPdfForBook(STATE.activeBookId), { passive: true });
+    }
     if (el.btnPdfClose) el.btnPdfClose.addEventListener('click', () => setReadingMode('html'));
 
     // PDF Toolbar Controls
