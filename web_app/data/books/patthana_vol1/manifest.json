@@ -1,0 +1,170 @@
+{
+  "id": "patthana_vol1",
+  "title": "Paṭṭhāna — Volume I",
+  "subtitle": "Conditional Relations",
+  "pali": "Paṭṭhāna-pāḷi (Paṭhama Bhāgo)",
+  "book_number": 7,
+  "translator": "Sayadaw U Nārada, assisted by Thein Nyun",
+  "accent": "#C71585",
+  "description": "The Great Seventh Book of the Abhidhamma Piṭaka, Volume I. Exposes the 24 conditional relations (paccaya) that govern all reality, starting with Root Condition, Object Condition, and Predominance Condition.",
+  "total_pages": 700,
+  "total_words": 166567,
+  "total_chapters": 14,
+  "pdf_rel": "Abhidhamma_Pitaka_Seven_Books/Book_7_Patthana/Conditional_Relations_1.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Front Matter & Preliminaries",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 14,
+      "page_count": 14,
+      "word_count": 3738,
+      "reading_time_min": 19
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Foreword by Dr. I.B. Horner",
+      "level": 1,
+      "start_page": 15,
+      "end_page": 18,
+      "page_count": 4,
+      "word_count": 774,
+      "reading_time_min": 4
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Introduction by Sayadaw U Narada",
+      "level": 1,
+      "start_page": 19,
+      "end_page": 19,
+      "page_count": 1,
+      "word_count": 226,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "What is Patthana?",
+      "level": 2,
+      "start_page": 19,
+      "end_page": 19,
+      "page_count": 1,
+      "word_count": 226,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Definitions",
+      "level": 2,
+      "start_page": 19,
+      "end_page": 19,
+      "page_count": 1,
+      "word_count": 226,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "The order of Patthana Exposition",
+      "level": 2,
+      "start_page": 19,
+      "end_page": 21,
+      "page_count": 3,
+      "word_count": 864,
+      "reading_time_min": 4
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Questions",
+      "level": 2,
+      "start_page": 22,
+      "end_page": 23,
+      "page_count": 2,
+      "word_count": 718,
+      "reading_time_min": 4
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Answers",
+      "level": 2,
+      "start_page": 24,
+      "end_page": 25,
+      "page_count": 2,
+      "word_count": 663,
+      "reading_time_min": 3
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "A. Positive Method Division",
+      "level": 2,
+      "start_page": 26,
+      "end_page": 90,
+      "page_count": 65,
+      "word_count": 19045,
+      "reading_time_min": 95
+    },
+    {
+      "id": "ch_010",
+      "chapter_number": 10,
+      "title": "B. Negative Method Division",
+      "level": 2,
+      "start_page": 91,
+      "end_page": 138,
+      "page_count": 48,
+      "word_count": 10991,
+      "reading_time_min": 55
+    },
+    {
+      "id": "ch_011",
+      "chapter_number": 11,
+      "title": "Question Chapter",
+      "level": 2,
+      "start_page": 139,
+      "end_page": 148,
+      "page_count": 10,
+      "word_count": 2095,
+      "reading_time_min": 10
+    },
+    {
+      "id": "ch_012",
+      "chapter_number": 12,
+      "title": "Answers",
+      "level": 2,
+      "start_page": 149,
+      "end_page": 150,
+      "page_count": 2,
+      "word_count": 2,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_013",
+      "chapter_number": 13,
+      "title": "1. Faultless Triplet",
+      "level": 2,
+      "start_page": 151,
+      "end_page": 456,
+      "page_count": 306,
+      "word_count": 65696,
+      "reading_time_min": 328
+    },
+    {
+      "id": "ch_014",
+      "chapter_number": 14,
+      "title": "2. Feeling Triplet",
+      "level": 2,
+      "start_page": 457,
+      "end_page": 700,
+      "page_count": 244,
+      "word_count": 61303,
+      "reading_time_min": 307
+    }
+  ]
+}

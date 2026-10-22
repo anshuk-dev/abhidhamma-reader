@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Abhidhamma Reader · Ancient Buddhist Texts</title>
+  <meta name="description" content="A minimalist, soft visual reader for the Seven Books of the Abhidhamma Piṭaka and Buddhist texts.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Real-time Reading Progress Bar -->
+  <div id="reading-progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <button id="btn-toggle-drawer" class="icon-btn with-label" aria-label="Open Library and Contents" title="Library & Table of Contents">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <span class="btn-label-desktop">Library</span>
+      </button>
+
+      <button id="btn-toc-quick" class="icon-btn with-label" aria-label="Table of Contents" title="Table of Contents">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+        <span class="btn-label-desktop">Contents</span>
+      </button>
+    </div>
+
+    <div class="header-center">
+      <span class="current-book-badge" id="header-book-title">Abhidhamma Piṭaka</span>
+      <span class="current-chapter-title" id="header-chapter-title">Loading chapters...</span>
+    </div>
+
+    <div class="header-right">
+      <button id="btn-open-search" class="icon-btn" aria-label="Search Book" title="Search text (/)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+
+      <button id="btn-open-settings" class="icon-btn with-label" aria-label="Reader Settings" title="Appearance & Typography (A)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span class="btn-label-desktop">Aa</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Drawer (Side panel) -->
+  <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+  <aside id="nav-drawer" class="nav-drawer" aria-label="Library Navigation">
+    <div class="drawer-header">
+      <span class="drawer-title">Abhidhamma Library</span>
+      <button id="btn-close-drawer" class="icon-btn" aria-label="Close Drawer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 3 Drawer Tabs: The 7 Books, TOC for active book, Full Library -->
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-tab="tab-seven-books">The 7 Books</button>
+      <button class="drawer-tab" data-tab="tab-active-toc">Contents</button>
+      <button class="drawer-tab" data-tab="tab-full-catalog">Full Library</button>
+    </div>
+
+    <div class="drawer-content">
+      <!-- Tab 1: The Seven Canonical Books of Abhidhamma -->
+      <div id="tab-seven-books" class="tab-pane active">
+        <div class="book-nav-list" id="abhidhamma-books-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Table of Contents for Active Book -->
+      <div id="tab-active-toc" class="tab-pane">
+        <div class="toc-list" id="active-book-toc-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Tab 3: Complete Library Catalog -->
+      <div id="tab-full-catalog" class="tab-pane">
+        <div id="full-library-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Reader Canvas -->
+  <main class="app-main">
+    <article class="reader-viewport" id="reader-viewport">
+      <div id="chapter-content-area">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Bottom Chapter Navigation -->
+      <footer class="chapter-nav-footer" id="chapter-nav-footer">
+        <button id="btn-prev-chapter" class="nav-btn" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Previous Chapter
+        </button>
+
+        <button id="btn-next-chapter" class="nav-btn" disabled>
+          Next Chapter
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </footer>
+    </article>
+  </main>
+
+  <!-- Bottom Mobile Toolbar -->
+  <nav class="bottom-bar" aria-label="Quick Controls">
+    <button id="btn-quick-prev" class="bottom-action-btn" aria-label="Previous Chapter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Prev</span>
+    </button>
+
+    <button id="btn-quick-toc" class="bottom-action-btn" aria-label="Chapters">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
+      <span>Chapters</span>
+    </button>
+
+    <div class="progress-pill" id="reading-percentage-pill">0%</div>
+
+    <button id="btn-quick-appearance" class="bottom-action-btn" aria-label="Appearance">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <span>Theme</span>
+    </button>
+
+    <button id="btn-quick-next" class="bottom-action-btn" aria-label="Next Chapter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+      <span>Next</span>
+    </button>
+  </nav>
+
+  <!-- Appearance & Typography Settings Modal -->
+  <div id="settings-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="settings-modal" role="dialog" aria-labelledby="settings-heading">
+      <div class="modal-header">
+        <h3 id="settings-heading" class="modal-title">Reader Settings</h3>
+        <button id="btn-close-settings" class="icon-btn" aria-label="Close Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Theme Selector (4 Calm & Soft Palettes) -->
+      <div class="setting-section">
+        <div class="setting-label">Color Theme</div>
+        <div class="theme-grid" id="theme-selector">
+          <button class="theme-pill-btn active" data-theme="paper" title="Paper (Warm White)">
+            <span class="theme-circle paper"></span>
+            <span>Paper</span>
+          </button>
+          <button class="theme-pill-btn" data-theme="sepia" title="Sepia (Warm Parchment)">
+            <span class="theme-circle sepia"></span>
+            <span>Sepia</span>
+          </button>
+          <button class="theme-pill-btn" data-theme="sage" title="Sage (Soothing Mint)">
+            <span class="theme-circle sage"></span>
+            <span>Sage</span>
+          </button>
+          <button class="theme-pill-btn" data-theme="obsidian" title="Obsidian (Dark OLED)">
+            <span class="theme-circle obsidian"></span>
+            <span>Night</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Typography Font Family -->
+      <div class="setting-section">
+        <div class="setting-label">Font Style</div>
+        <div class="btn-group" id="font-family-group">
+          <button class="btn-group-item active" data-font="serif" style="font-family: Georgia, serif;">Serif</button>
+          <button class="btn-group-item" data-font="sans" style="font-family: system-ui, sans-serif;">Sans</button>
+          <button class="btn-group-item" data-font="mono" style="font-family: monospace;">Mono</button>
+        </div>
+      </div>
+
+      <!-- Font Size Stepper -->
+      <div class="setting-section">
+        <div class="setting-label">Font Size</div>
+        <div class="stepper-container">
+          <button class="stepper-btn" id="btn-font-decrease" aria-label="Decrease Font Size">A−</button>
+          <span class="stepper-display" id="font-size-display">19 px</span>
+          <button class="stepper-btn" id="btn-font-increase" aria-label="Increase Font Size">A+</button>
+        </div>
+      </div>
+
+      <!-- Line Spacing -->
+      <div class="setting-section">
+        <div class="setting-label">Line Spacing</div>
+        <div class="btn-group" id="line-height-group">
+          <button class="btn-group-item" data-line="1.5">Compact</button>
+          <button class="btn-group-item active" data-line="1.8">Normal</button>
+          <button class="btn-group-item" data-line="2.2">Relaxed</button>
+        </div>
+      </div>
+
+      <!-- Column Width -->
+      <div class="setting-section">
+        <div class="setting-label">Reader Width</div>
+        <div class="btn-group" id="width-group">
+          <button class="btn-group-item" data-width="620px">Narrow</button>
+          <button class="btn-group-item active" data-width="760px">Balanced</button>
+          <button class="btn-group-item" data-width="960px">Wide</button>
+        </div>
+      </div>
+
+      <!-- Text Alignment & Page Badges -->
+      <div class="setting-section">
+        <div class="toggle-row">
+          <span class="toggle-label">Text Alignment</span>
+          <div class="btn-group" id="align-group">
+            <button class="btn-group-item active" data-align="left">Left</button>
+            <button class="btn-group-item" data-align="justify">Justify</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="setting-section">
+        <div class="toggle-row">
+          <span class="toggle-label">Show Book Page Markers</span>
+          <div class="btn-group" id="markers-group">
+            <button class="btn-group-item active" data-markers="show">Show</button>
+            <button class="btn-group-item" data-markers="hide">Hide</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div id="search-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="search-modal" role="dialog" aria-labelledby="search-heading">
+      <div class="modal-header">
+        <h3 id="search-heading" class="modal-title">Search in Chapter</h3>
+        <button id="btn-close-search" class="icon-btn" aria-label="Close Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-query-input" class="search-input" placeholder="Type word or phrase (e.g., consciousness, nibbāna)..." autocomplete="off">
+      </div>
+
+      <div class="search-results-list" id="search-results-list">
+        <div class="empty-state">Type a term above to search within this chapter</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

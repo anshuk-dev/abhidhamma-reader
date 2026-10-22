@@ -1,0 +1,181 @@
+{
+  "id": "puggalapannatti",
+  "title": "Puggalapaññatti",
+  "subtitle": "Designation of Human Types",
+  "pali": "Puggalapaññatti-pāḷi",
+  "book_number": 4,
+  "translator": "Bimala Charan Law",
+  "accent": "#9370DB",
+  "description": "The fourth book of the Abhidhamma Piṭaka. Classifies human characters and spiritual individuals into groups from one to ten, modeled after the Anguttara Nikaya method.",
+  "total_pages": 136,
+  "total_words": 36204,
+  "total_chapters": 15,
+  "pdf_rel": "Abhidhamma_Pitaka_Seven_Books/Book_4_Puggalapannatti/puggalapannatti-en.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Front Matter & Preliminaries",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 8,
+      "page_count": 8,
+      "word_count": 304,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Introduction",
+      "level": 1,
+      "start_page": 9,
+      "end_page": 16,
+      "page_count": 8,
+      "word_count": 1457,
+      "reading_time_min": 7
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "The Table of Contents",
+      "level": 1,
+      "start_page": 17,
+      "end_page": 34,
+      "page_count": 18,
+      "word_count": 4839,
+      "reading_time_min": 24
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Division of Human Types by One",
+      "level": 1,
+      "start_page": 35,
+      "end_page": 46,
+      "page_count": 12,
+      "word_count": 3682,
+      "reading_time_min": 18
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Division of Human Types by Two",
+      "level": 1,
+      "start_page": 47,
+      "end_page": 58,
+      "page_count": 12,
+      "word_count": 3528,
+      "reading_time_min": 18
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Division of Human Types by Three",
+      "level": 1,
+      "start_page": 59,
+      "end_page": 74,
+      "page_count": 16,
+      "word_count": 5200,
+      "reading_time_min": 26
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Division of Human Types by Four",
+      "level": 1,
+      "start_page": 75,
+      "end_page": 108,
+      "page_count": 34,
+      "word_count": 11604,
+      "reading_time_min": 58
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Division of Human Types by Five",
+      "level": 1,
+      "start_page": 109,
+      "end_page": 116,
+      "page_count": 8,
+      "word_count": 2746,
+      "reading_time_min": 14
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "Division of Human Types by Six",
+      "level": 1,
+      "start_page": 117,
+      "end_page": 118,
+      "page_count": 2,
+      "word_count": 325,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_010",
+      "chapter_number": 10,
+      "title": "Division of Human Types by Seven",
+      "level": 1,
+      "start_page": 119,
+      "end_page": 122,
+      "page_count": 4,
+      "word_count": 978,
+      "reading_time_min": 5
+    },
+    {
+      "id": "ch_011",
+      "chapter_number": 11,
+      "title": "Division of Human Types by Eight",
+      "level": 1,
+      "start_page": 123,
+      "end_page": 124,
+      "page_count": 2,
+      "word_count": 102,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_012",
+      "chapter_number": 12,
+      "title": "Division of Human Types by Nine",
+      "level": 1,
+      "start_page": 125,
+      "end_page": 128,
+      "page_count": 4,
+      "word_count": 652,
+      "reading_time_min": 3
+    },
+    {
+      "id": "ch_013",
+      "chapter_number": 13,
+      "title": "Division of Human Types by Ten",
+      "level": 1,
+      "start_page": 129,
+      "end_page": 130,
+      "page_count": 2,
+      "word_count": 145,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_014",
+      "chapter_number": 14,
+      "title": "General Index",
+      "level": 1,
+      "start_page": 131,
+      "end_page": 134,
+      "page_count": 4,
+      "word_count": 398,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_015",
+      "chapter_number": 15,
+      "title": "Index of Pali Words",
+      "level": 1,
+      "start_page": 135,
+      "end_page": 136,
+      "page_count": 2,
+      "word_count": 244,
+      "reading_time_min": 1
+    }
+  ]
+}

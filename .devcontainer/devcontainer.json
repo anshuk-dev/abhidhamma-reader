@@ -1,0 +1,12 @@
+{
+  "name": "Abhidhamma Reader",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "forwardPorts": [8088],
+  "portsAttributes": {
+    "8088": {
+      "label": "Abhidhamma Reader",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postStartCommand": "nohup python3 server.py > /tmp/reader.log 2>&1 &"
+}
