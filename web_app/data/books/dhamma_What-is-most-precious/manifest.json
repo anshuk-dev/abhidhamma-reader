@@ -1,0 +1,91 @@
+{
+  "id": "dhamma_What-is-most-precious",
+  "title": "What Is Most Precious",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 42,
+  "total_words": 15817,
+  "total_chapters": 7,
+  "pdf_rel": "Dhamma_Books/What-is-most-precious.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Front Matter & Introduction",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 4,
+      "page_count": 4,
+      "word_count": 53,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "The best time to understand the Truth",
+      "level": 1,
+      "start_page": 5,
+      "end_page": 10,
+      "page_count": 6,
+      "word_count": 2372,
+      "reading_time_min": 12
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "The Functions of Citta",
+      "level": 1,
+      "start_page": 11,
+      "end_page": 18,
+      "page_count": 8,
+      "word_count": 3012,
+      "reading_time_min": 15
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "What is Death?",
+      "level": 1,
+      "start_page": 19,
+      "end_page": 24,
+      "page_count": 6,
+      "word_count": 2222,
+      "reading_time_min": 11
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Every moment is present moment",
+      "level": 1,
+      "start_page": 25,
+      "end_page": 30,
+      "page_count": 6,
+      "word_count": 2647,
+      "reading_time_min": 13
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "The right Path and the wrong Path",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 36,
+      "page_count": 6,
+      "word_count": 2775,
+      "reading_time_min": 14
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "One cannot do anything",
+      "level": 1,
+      "start_page": 37,
+      "end_page": 42,
+      "page_count": 6,
+      "word_count": 2736,
+      "reading_time_min": 14
+    }
+  ]
+}

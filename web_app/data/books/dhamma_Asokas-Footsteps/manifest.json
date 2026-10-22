@@ -1,0 +1,69 @@
+{
+  "id": "dhamma_Asokas-Footsteps",
+  "title": "Asokas Footsteps",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 61,
+  "total_words": 26476,
+  "total_chapters": 5,
+  "pdf_rel": "Dhamma_Books/Asokas-Footsteps.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "In Asoka’s  Footsteps (p. 1–15)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 15,
+      "page_count": 15,
+      "word_count": 6451,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "As to the unconditioned paramattha dhamma, nibbåna (p. 16–30)",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 30,
+      "page_count": 15,
+      "word_count": 6500,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "which accompanies akusala citta. Also in the case  (p. 31–45)",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 45,
+      "page_count": 15,
+      "word_count": 6673,
+      "reading_time_min": 33
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "when all defilements are eradicated and there are  (p. 46–60)",
+      "level": 1,
+      "start_page": 46,
+      "end_page": 60,
+      "page_count": 15,
+      "word_count": 6377,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "She gave us practical advice for the application o (p. 61–61)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 61,
+      "page_count": 1,
+      "word_count": 475,
+      "reading_time_min": 2
+    }
+  ]
+}

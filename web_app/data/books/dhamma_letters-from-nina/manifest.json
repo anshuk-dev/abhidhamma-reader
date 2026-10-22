@@ -1,0 +1,47 @@
+{
+  "id": "dhamma_letters-from-nina",
+  "title": "Letters From Nina",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 42,
+  "total_words": 26390,
+  "total_chapters": 3,
+  "pdf_rel": "Dhamma_Books/letters-from-nina.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Part 1",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 16,
+      "page_count": 16,
+      "word_count": 9787,
+      "reading_time_min": 49
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Part 11",
+      "level": 1,
+      "start_page": 17,
+      "end_page": 29,
+      "page_count": 13,
+      "word_count": 8905,
+      "reading_time_min": 45
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Part 111",
+      "level": 1,
+      "start_page": 30,
+      "end_page": 42,
+      "page_count": 13,
+      "word_count": 7698,
+      "reading_time_min": 38
+    }
+  ]
+}

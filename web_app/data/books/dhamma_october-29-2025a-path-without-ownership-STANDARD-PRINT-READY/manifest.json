@@ -1,0 +1,113 @@
+{
+  "id": "dhamma_october-29-2025a-path-without-ownership-STANDARD-PRINT-READY",
+  "title": "October 29 2025A Path Without Ownership Standard Print Ready",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 170,
+  "total_words": 35753,
+  "total_chapters": 9,
+  "pdf_rel": "Dhamma_Books/october-29-2025a-path-without-ownership-STANDARD-PRINT-READY.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "A path without ownership (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 3461,
+      "reading_time_min": 17
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "IN SRI LANKA (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 3797,
+      "reading_time_min": 19
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "IN BANGKOK (JUNE AND JULY, 2024) (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 4408,
+      "reading_time_min": 22
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "CAMBODIA (AUGUST 2024) (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 4608,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "DUKKHA (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 4368,
+      "reading_time_min": 22
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "BHAVANA IN DAILY LIFE (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 4536,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "VIÑÑANAM ANIDASSANAM (p. 121–140)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 140,
+      "page_count": 20,
+      "word_count": 4246,
+      "reading_time_min": 21
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "MOMENTARINESS (p. 141–160)",
+      "level": 1,
+      "start_page": 141,
+      "end_page": 160,
+      "page_count": 20,
+      "word_count": 4684,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "KAMMA (p. 161–170)",
+      "level": 1,
+      "start_page": 161,
+      "end_page": 170,
+      "page_count": 10,
+      "word_count": 1645,
+      "reading_time_min": 8
+    }
+  ]
+}

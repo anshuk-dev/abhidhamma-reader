@@ -1,0 +1,25 @@
+{
+  "id": "dhamma_life-in-a-moment",
+  "title": "Life In A Moment",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 18,
+  "total_words": 11545,
+  "total_chapters": 1,
+  "pdf_rel": "Dhamma_Books/life-in-a-moment.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Life in a moment (p. 1–18)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 18,
+      "page_count": 18,
+      "word_count": 11545,
+      "reading_time_min": 58
+    }
+  ]
+}

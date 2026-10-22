@@ -1,0 +1,102 @@
+{
+  "id": "dhamma_metta-loving-kindness-in-buddhism",
+  "title": "Metta Loving Kindness In Buddhism",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 146,
+  "total_words": 37523,
+  "total_chapters": 8,
+  "pdf_rel": "Dhamma_Books/metta-loving-kindness-in-buddhism.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "METT¯A (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 5092,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "in order to have kusala cittas, to recite stanzas  (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 6103,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "that their mother was their refuge before, but tha (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 6101,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "bad conduct through body and speech but he has men (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 4940,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "same at eventide, or if anyone would develop mett¯ (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 5436,
+      "reading_time_min": 27
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "reborn as a Brahma in a Brahma plane there must be (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 5720,
+      "reading_time_min": 29
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "as the six quarters–parents as the east, teachers  (p. 121–140)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 140,
+      "page_count": 20,
+      "word_count": 3264,
+      "reading_time_min": 16
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "vot.t.hapana determining consciousness (p. 141–146)",
+      "level": 1,
+      "start_page": 141,
+      "end_page": 146,
+      "page_count": 6,
+      "word_count": 867,
+      "reading_time_min": 4
+    }
+  ]
+}

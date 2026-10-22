@@ -1,0 +1,69 @@
+{
+  "id": "dhamma_dhamma-in-cambodia",
+  "title": "Dhamma In Cambodia",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 73,
+  "total_words": 39879,
+  "total_chapters": 5,
+  "pdf_rel": "Dhamma_Books/dhamma-in-cambodia.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Dhamma in Cambodia. (p. 1–15)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 15,
+      "page_count": 15,
+      "word_count": 8254,
+      "reading_time_min": 41
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "and see what is appearing. At that moment there is (p. 16–30)",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 30,
+      "page_count": 15,
+      "word_count": 8539,
+      "reading_time_min": 43
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "equanimity of effort, viriya, that is neither over (p. 31–45)",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 45,
+      "page_count": 15,
+      "word_count": 7990,
+      "reading_time_min": 40
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Dhamma Discussions in Hotel Sofitel (Part II) (p. 46–60)",
+      "level": 1,
+      "start_page": 46,
+      "end_page": 60,
+      "page_count": 15,
+      "word_count": 8031,
+      "reading_time_min": 40
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "realities should develop to the degree of paìivedh (p. 61–73)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 73,
+      "page_count": 13,
+      "word_count": 7065,
+      "reading_time_min": 35
+    }
+  ]
+}

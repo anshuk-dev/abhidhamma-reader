@@ -1,0 +1,102 @@
+{
+  "id": "dhamma_letters-on-vipassana",
+  "title": "Letters On Vipassana",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 160,
+  "total_words": 47293,
+  "total_chapters": 8,
+  "pdf_rel": "Dhamma_Books/letters-on-vipassana.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Letters on Vipassan¯a (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 4932,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "We read in the “Stories of the Mansions”(Khuddaka  (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 6410,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "develop understanding of n¯ama and r¯upa. (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 6308,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "there will be conditions for knowing realities as  (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 6042,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "think of concepts. That is why people who walk, li (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 6131,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Letter 8 (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 6319,
+      "reading_time_min": 32
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "one knows that one minds a lot. How much or how li (p. 121–140)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 140,
+      "page_count": 20,
+      "word_count": 5613,
+      "reading_time_min": 28
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Letter 11 (p. 141–160)",
+      "level": 1,
+      "start_page": 141,
+      "end_page": 160,
+      "page_count": 20,
+      "word_count": 5538,
+      "reading_time_min": 28
+    }
+  ]
+}

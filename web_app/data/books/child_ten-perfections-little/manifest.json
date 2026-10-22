@@ -1,0 +1,47 @@
+{
+  "id": "child_ten-perfections-little",
+  "title": "Ten Perfections Little",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Children’s Books",
+  "description": "",
+  "total_pages": 45,
+  "total_words": 10766,
+  "total_chapters": 3,
+  "pdf_rel": "Children_Books/ten-perfections-little.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The Ten Perfections for Little (p. 1–15)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 15,
+      "page_count": 15,
+      "word_count": 3839,
+      "reading_time_min": 19
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "1. monk: a man who has left home to follow the Bud (p. 16–30)",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 30,
+      "page_count": 15,
+      "word_count": 3648,
+      "reading_time_min": 18
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Chapter 9. Mettā (loving-kindness) (p. 31–45)",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 45,
+      "page_count": 15,
+      "word_count": 3279,
+      "reading_time_min": 16
+    }
+  ]
+}

@@ -3860,7 +3860,10 @@
       "category": "Sutta Piṭaka",
       "pages": 402,
       "pdf_rel": "Sutta_Pitaka/the-guide-nettippakarana.pdf",
-      "description": "An ancient exegetical work attributed to Mahākaccāna, explaining the textual methodology for interpreting the Buddha’s discourses."
+      "description": "An ancient exegetical work attributed to Mahākaccāna, explaining the textual methodology for interpreting the Buddha’s discourses.",
+      "is_readable": true,
+      "total_chapters": 17,
+      "total_words": 141441
     }
   ],
   "commentaries": [
@@ -3871,7 +3874,10 @@
       "category": "Commentaries & Manuals",
       "pages": 853,
       "pdf_rel": "Commentaries_and_Manuals/PathofPurification2011.pdf",
-      "description": "The great 5th-century encyclopedia of Theravada Buddhist doctrine and meditation practice."
+      "description": "The great 5th-century encyclopedia of Theravada Buddhist doctrine and meditation practice.",
+      "is_readable": true,
+      "total_chapters": 29,
+      "total_words": 426639
     },
     {
       "id": "comm_bp304s_Bfodhi_Comprehensive_Manual_of_Abhidhamma",
@@ -3880,7 +3886,10 @@
       "category": "Commentaries & Manuals",
       "pages": 307,
       "pdf_rel": "Commentaries_and_Manuals/bp304s_Bfodhi_Comprehensive_Manual_of_Abhidhamma.pdf",
-      "description": "The modern standard introduction to classical Theravada Abhidhamma, providing systematic tables and analytical explanations."
+      "description": "The modern standard introduction to classical Theravada Abhidhamma, providing systematic tables and analytical explanations.",
+      "is_readable": true,
+      "total_chapters": 13,
+      "total_words": 89879
     },
     {
       "id": "comm_paramatthamanjusa-visuddhimagga-chapter-xiv",
@@ -3889,7 +3898,10 @@
       "category": "Commentaries & Manuals",
       "pages": 157,
       "pdf_rel": "Commentaries_and_Manuals/paramatthamanjusa-visuddhimagga-chapter-xiv.pdf",
-      "description": "The Mahāṭīkā commentary on Chapter XIV of the Visuddhimagga, elucidating the ultimate realities (paramattha dhammas)."
+      "description": "The Mahāṭīkā commentary on Chapter XIV of the Visuddhimagga, elucidating the ultimate realities (paramattha dhammas).",
+      "is_readable": true,
+      "total_chapters": 8,
+      "total_words": 60973
     }
   ],
   "dhamma_books": [
@@ -3898,336 +3910,480 @@
       "title": "A Survey Of Paramattha Dhammas",
       "category": "Dhamma Books",
       "pages": 510,
-      "pdf_rel": "Dhamma_Books/A-Survey-of-Paramattha-Dhammas.pdf"
+      "pdf_rel": "Dhamma_Books/A-Survey-of-Paramattha-Dhammas.pdf",
+      "is_readable": true,
+      "total_chapters": 17,
+      "total_words": 150001
     },
     {
       "id": "dhamma_Abhidhamma-in-Daily-Life",
       "title": "Abhidhamma In Daily Life",
       "category": "Dhamma Books",
       "pages": 192,
-      "pdf_rel": "Dhamma_Books/Abhidhamma-in-Daily-Life.pdf"
+      "pdf_rel": "Dhamma_Books/Abhidhamma-in-Daily-Life.pdf",
+      "is_readable": true,
+      "total_chapters": 30,
+      "total_words": 84862
     },
     {
       "id": "dhamma_Asokas-Footsteps",
       "title": "Asokas Footsteps",
       "category": "Dhamma Books",
       "pages": 61,
-      "pdf_rel": "Dhamma_Books/Asokas-Footsteps.pdf"
+      "pdf_rel": "Dhamma_Books/Asokas-Footsteps.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 26476
     },
     {
       "id": "dhamma_BUDDHISM-AND-THE-FEAR-OF-COVID-19",
       "title": "Buddhism And The Fear Of Covid 19",
       "category": "Dhamma Books",
       "pages": 29,
-      "pdf_rel": "Dhamma_Books/BUDDHISM-AND-THE-FEAR-OF-COVID-19.pdf"
+      "pdf_rel": "Dhamma_Books/BUDDHISM-AND-THE-FEAR-OF-COVID-19.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 12133
     },
     {
       "id": "dhamma_Buddhism-in-Daily-Life",
       "title": "Buddhism In Daily Life",
       "category": "Dhamma Books",
       "pages": 142,
-      "pdf_rel": "Dhamma_Books/Buddhism-in-Daily-Life.pdf"
+      "pdf_rel": "Dhamma_Books/Buddhism-in-Daily-Life.pdf",
+      "is_readable": true,
+      "total_chapters": 24,
+      "total_words": 69097
     },
     {
       "id": "dhamma_Cetasikas",
       "title": "Cetasikas",
       "category": "Dhamma Books",
       "pages": 322,
-      "pdf_rel": "Dhamma_Books/Cetasikas.pdf"
+      "pdf_rel": "Dhamma_Books/Cetasikas.pdf",
+      "is_readable": true,
+      "total_chapters": 13,
+      "total_words": 134007
     },
     {
       "id": "dhamma_Confidence-In-The-Buddhas-Teaching",
       "title": "Confidence In The Buddhas Teaching",
       "category": "Dhamma Books",
       "pages": 39,
-      "pdf_rel": "Dhamma_Books/Confidence-In-The-Buddhas-Teaching.pdf"
+      "pdf_rel": "Dhamma_Books/Confidence-In-The-Buddhas-Teaching.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 16262
     },
     {
       "id": "dhamma_Considering-the-Truth",
       "title": "Considering The Truth",
       "category": "Dhamma Books",
       "pages": 47,
-      "pdf_rel": "Dhamma_Books/Considering-the-Truth.pdf"
+      "pdf_rel": "Dhamma_Books/Considering-the-Truth.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 18842
     },
     {
       "id": "dhamma_Introduction-to-the-Abhidhamma",
       "title": "Introduction To The Abhidhamma",
       "category": "Dhamma Books",
       "pages": 49,
-      "pdf_rel": "Dhamma_Books/Introduction-to-the-Abhidhamma.pdf"
+      "pdf_rel": "Dhamma_Books/Introduction-to-the-Abhidhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 35,
+      "total_words": 20233
     },
     {
       "id": "dhamma_Introduction-to-the-Buddhist-Scriptures",
       "title": "Introduction To The Buddhist Scriptures",
       "category": "Dhamma Books",
       "pages": 101,
-      "pdf_rel": "Dhamma_Books/Introduction-to-the-Buddhist-Scriptures.pdf"
+      "pdf_rel": "Dhamma_Books/Introduction-to-the-Buddhist-Scriptures.pdf",
+      "is_readable": true,
+      "total_chapters": 6,
+      "total_words": 30069
     },
     {
       "id": "dhamma_Journey_Egypt",
       "title": "Journey Egypt",
       "category": "Dhamma Books",
       "pages": 41,
-      "pdf_rel": "Dhamma_Books/Journey_Egypt.pdf"
+      "pdf_rel": "Dhamma_Books/Journey_Egypt.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 16739
     },
     {
       "id": "dhamma_Latent-Tendencies",
       "title": "Latent Tendencies",
       "category": "Dhamma Books",
       "pages": 73,
-      "pdf_rel": "Dhamma_Books/Latent-Tendencies.pdf"
+      "pdf_rel": "Dhamma_Books/Latent-Tendencies.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 18017
     },
     {
       "id": "dhamma_Once-upon-a-time",
       "title": "Once Upon A Time",
       "category": "Dhamma Books",
       "pages": 41,
-      "pdf_rel": "Dhamma_Books/Once-upon-a-time.pdf"
+      "pdf_rel": "Dhamma_Books/Once-upon-a-time.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 17761
     },
     {
       "id": "dhamma_Pali-Accents",
       "title": "Pali Accents",
       "category": "Dhamma Books",
       "pages": 4,
-      "pdf_rel": "Dhamma_Books/Pali-Accents.pdf"
+      "pdf_rel": "Dhamma_Books/Pali-Accents.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 732
     },
     {
       "id": "dhamma_Pilgrimage_India_unedited",
       "title": "Pilgrimage India Unedited",
       "category": "Dhamma Books",
       "pages": 53,
-      "pdf_rel": "Dhamma_Books/Pilgrimage_India_unedited.pdf"
+      "pdf_rel": "Dhamma_Books/Pilgrimage_India_unedited.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 23164
     },
     {
       "id": "dhamma_SLRevisited",
       "title": "Slrevisited",
       "category": "Dhamma Books",
       "pages": 55,
-      "pdf_rel": "Dhamma_Books/SLRevisited.pdf"
+      "pdf_rel": "Dhamma_Books/SLRevisited.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 27217
     },
     {
       "id": "dhamma_Sharing-Dhamma",
       "title": "Sharing Dhamma",
       "category": "Dhamma Books",
       "pages": 35,
-      "pdf_rel": "Dhamma_Books/Sharing-Dhamma.pdf"
+      "pdf_rel": "Dhamma_Books/Sharing-Dhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 13489
     },
     {
       "id": "dhamma_Sri_Lanka",
       "title": "Sri Lanka",
       "category": "Dhamma Books",
       "pages": 48,
-      "pdf_rel": "Dhamma_Books/Sri_Lanka.pdf"
+      "pdf_rel": "Dhamma_Books/Sri_Lanka.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 20669
     },
     {
       "id": "dhamma_The-Buddhas-Path",
       "title": "The Buddhas Path",
       "category": "Dhamma Books",
       "pages": 121,
-      "pdf_rel": "Dhamma_Books/The-Buddhas-Path.pdf"
+      "pdf_rel": "Dhamma_Books/The-Buddhas-Path.pdf",
+      "is_readable": true,
+      "total_chapters": 7,
+      "total_words": 40438
     },
     {
       "id": "dhamma_The-Buddhist-Teaching-on-Physical-Phenomena",
       "title": "The Buddhist Teaching On Physical Phenomena",
       "category": "Dhamma Books",
       "pages": 102,
-      "pdf_rel": "Dhamma_Books/The-Buddhist-Teaching-on-Physical-Phenomena.pdf"
+      "pdf_rel": "Dhamma_Books/The-Buddhist-Teaching-on-Physical-Phenomena.pdf",
+      "is_readable": true,
+      "total_chapters": 6,
+      "total_words": 27710
     },
     {
       "id": "dhamma_The-Conditionality-of-Life",
       "title": "The Conditionality Of Life",
       "category": "Dhamma Books",
       "pages": 138,
-      "pdf_rel": "Dhamma_Books/The-Conditionality-of-Life.pdf"
+      "pdf_rel": "Dhamma_Books/The-Conditionality-of-Life.pdf",
+      "is_readable": true,
+      "total_chapters": 27,
+      "total_words": 60685
     },
     {
       "id": "dhamma_The-Meaning-of-Dhamma",
       "title": "The Meaning Of Dhamma",
       "category": "Dhamma Books",
       "pages": 13,
-      "pdf_rel": "Dhamma_Books/The-Meaning-of-Dhamma.pdf"
+      "pdf_rel": "Dhamma_Books/The-Meaning-of-Dhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 7708
     },
     {
       "id": "dhamma_The-Perfections",
       "title": "The Perfections",
       "category": "Dhamma Books",
       "pages": 203,
-      "pdf_rel": "Dhamma_Books/The-Perfections.pdf"
+      "pdf_rel": "Dhamma_Books/The-Perfections.pdf",
+      "is_readable": true,
+      "total_chapters": 31,
+      "total_words": 80192
     },
     {
       "id": "dhamma_The-Present-Moment",
       "title": "The Present Moment",
       "category": "Dhamma Books",
       "pages": 33,
-      "pdf_rel": "Dhamma_Books/The-Present-Moment.pdf"
+      "pdf_rel": "Dhamma_Books/The-Present-Moment.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 13749
     },
     {
       "id": "dhamma_The-Shortness-of-Life",
       "title": "The Shortness Of Life",
       "category": "Dhamma Books",
       "pages": 36,
-      "pdf_rel": "Dhamma_Books/The-Shortness-of-Life.pdf"
+      "pdf_rel": "Dhamma_Books/The-Shortness-of-Life.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 13346
     },
     {
       "id": "dhamma_The-cycle-of-Birth-and-Death",
       "title": "The Cycle Of Birth And Death",
       "category": "Dhamma Books",
       "pages": 28,
-      "pdf_rel": "Dhamma_Books/The-cycle-of-Birth-and-Death.pdf"
+      "pdf_rel": "Dhamma_Books/The-cycle-of-Birth-and-Death.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 13477
     },
     {
       "id": "dhamma_ThePerfectionsDevelopedInDailyLife",
       "title": "Theperfectionsdevelopedindailylife",
       "category": "Dhamma Books",
       "pages": 49,
-      "pdf_rel": "Dhamma_Books/ThePerfectionsDevelopedInDailyLife.pdf"
+      "pdf_rel": "Dhamma_Books/ThePerfectionsDevelopedInDailyLife.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 22656
     },
     {
       "id": "dhamma_Understanding-Realities-Now",
       "title": "Understanding Realities Now",
       "category": "Dhamma Books",
       "pages": 421,
-      "pdf_rel": "Dhamma_Books/Understanding-Realities-Now.pdf"
+      "pdf_rel": "Dhamma_Books/Understanding-Realities-Now.pdf",
+      "is_readable": true,
+      "total_chapters": 17,
+      "total_words": 124400
     },
     {
       "id": "dhamma_Understanding-Reality",
       "title": "Understanding Reality",
       "category": "Dhamma Books",
       "pages": 6,
-      "pdf_rel": "Dhamma_Books/Understanding-Reality.pdf"
+      "pdf_rel": "Dhamma_Books/Understanding-Reality.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 2909
     },
     {
       "id": "dhamma_What-is-most-precious",
       "title": "What Is Most Precious",
       "category": "Dhamma Books",
       "pages": 42,
-      "pdf_rel": "Dhamma_Books/What-is-most-precious.pdf"
+      "pdf_rel": "Dhamma_Books/What-is-most-precious.pdf",
+      "is_readable": true,
+      "total_chapters": 7,
+      "total_words": 15817
     },
     {
       "id": "dhamma_alone_with_dhamma",
       "title": "Alone With Dhamma",
       "category": "Dhamma Books",
       "pages": 27,
-      "pdf_rel": "Dhamma_Books/alone_with_dhamma.pdf"
+      "pdf_rel": "Dhamma_Books/alone_with_dhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 9,
+      "total_words": 12027
     },
     {
       "id": "dhamma_an-introduction-to-the-abhidhamma",
       "title": "An Introduction To The Abhidhamma",
       "category": "Dhamma Books",
       "pages": 42,
-      "pdf_rel": "Dhamma_Books/an-introduction-to-the-abhidhamma.pdf"
+      "pdf_rel": "Dhamma_Books/an-introduction-to-the-abhidhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 11807
     },
     {
       "id": "dhamma_dhamma-in-cambodia",
       "title": "Dhamma In Cambodia",
       "category": "Dhamma Books",
       "pages": 73,
-      "pdf_rel": "Dhamma_Books/dhamma-in-cambodia.pdf"
+      "pdf_rel": "Dhamma_Books/dhamma-in-cambodia.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 39879
     },
     {
       "id": "dhamma_dhamma-now-2",
       "title": "Dhamma Now 2",
       "category": "Dhamma Books",
       "pages": 114,
-      "pdf_rel": "Dhamma_Books/dhamma-now-2.pdf"
+      "pdf_rel": "Dhamma_Books/dhamma-now-2.pdf",
+      "is_readable": true,
+      "total_chapters": 6,
+      "total_words": 28682
     },
     {
       "id": "dhamma_learning-to-understand-life",
       "title": "Learning To Understand Life",
       "category": "Dhamma Books",
       "pages": 64,
-      "pdf_rel": "Dhamma_Books/learning-to-understand-life.pdf"
+      "pdf_rel": "Dhamma_Books/learning-to-understand-life.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 13416
     },
     {
       "id": "dhamma_letters-from-nina",
       "title": "Letters From Nina",
       "category": "Dhamma Books",
       "pages": 42,
-      "pdf_rel": "Dhamma_Books/letters-from-nina.pdf"
+      "pdf_rel": "Dhamma_Books/letters-from-nina.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 26390
     },
     {
       "id": "dhamma_letters-on-vipassana",
       "title": "Letters On Vipassana",
       "category": "Dhamma Books",
       "pages": 160,
-      "pdf_rel": "Dhamma_Books/letters-on-vipassana.pdf"
+      "pdf_rel": "Dhamma_Books/letters-on-vipassana.pdf",
+      "is_readable": true,
+      "total_chapters": 8,
+      "total_words": 47293
     },
     {
       "id": "dhamma_life-in-a-moment",
       "title": "Life In A Moment",
       "category": "Dhamma Books",
       "pages": 18,
-      "pdf_rel": "Dhamma_Books/life-in-a-moment.pdf"
+      "pdf_rel": "Dhamma_Books/life-in-a-moment.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 11545
     },
     {
       "id": "dhamma_listening-to-the-dhamma",
       "title": "Listening To The Dhamma",
       "category": "Dhamma Books",
       "pages": 40,
-      "pdf_rel": "Dhamma_Books/listening-to-the-dhamma.pdf"
+      "pdf_rel": "Dhamma_Books/listening-to-the-dhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 18558
     },
     {
       "id": "dhamma_metta-loving-kindness-in-buddhism",
       "title": "Metta Loving Kindness In Buddhism",
       "category": "Dhamma Books",
       "pages": 146,
-      "pdf_rel": "Dhamma_Books/metta-loving-kindness-in-buddhism.pdf"
+      "pdf_rel": "Dhamma_Books/metta-loving-kindness-in-buddhism.pdf",
+      "is_readable": true,
+      "total_chapters": 8,
+      "total_words": 37523
     },
     {
       "id": "dhamma_october-29-2025a-path-without-ownership-STANDARD-PRINT-READY",
       "title": "October 29 2025A Path Without Ownership Standard Print Ready",
       "category": "Dhamma Books",
       "pages": 170,
-      "pdf_rel": "Dhamma_Books/october-29-2025a-path-without-ownership-STANDARD-PRINT-READY.pdf"
+      "pdf_rel": "Dhamma_Books/october-29-2025a-path-without-ownership-STANDARD-PRINT-READY.pdf",
+      "is_readable": true,
+      "total_chapters": 9,
+      "total_words": 35753
     },
     {
       "id": "dhamma_perseverance-in-dhamma",
       "title": "Perseverance In Dhamma",
       "category": "Dhamma Books",
       "pages": 68,
-      "pdf_rel": "Dhamma_Books/perseverance-in-dhamma.pdf"
+      "pdf_rel": "Dhamma_Books/perseverance-in-dhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 18229
     },
     {
       "id": "dhamma_preserving-the-buddhas-teachings",
       "title": "Preserving The Buddhas Teachings",
       "category": "Dhamma Books",
       "pages": 59,
-      "pdf_rel": "Dhamma_Books/preserving-the-buddhas-teachings.pdf"
+      "pdf_rel": "Dhamma_Books/preserving-the-buddhas-teachings.pdf",
+      "is_readable": true,
+      "total_chapters": 4,
+      "total_words": 28333
     },
     {
       "id": "dhamma_realities-and-concepts",
       "title": "Realities And Concepts",
       "category": "Dhamma Books",
       "pages": 39,
-      "pdf_rel": "Dhamma_Books/realities-and-concepts.pdf"
+      "pdf_rel": "Dhamma_Books/realities-and-concepts.pdf",
+      "is_readable": true,
+      "total_chapters": 7,
+      "total_words": 14664
     },
     {
       "id": "dhamma_taking_refuge_in_buddhism",
       "title": "Taking Refuge In Buddhism",
       "category": "Dhamma Books",
       "pages": 109,
-      "pdf_rel": "Dhamma_Books/taking_refuge_in_buddhism.pdf"
+      "pdf_rel": "Dhamma_Books/taking_refuge_in_buddhism.pdf",
+      "is_readable": true,
+      "total_chapters": 6,
+      "total_words": 28833
     },
     {
       "id": "dhamma_the-world-in-the-buddhist-sense",
       "title": "The World In The Buddhist Sense",
       "category": "Dhamma Books",
       "pages": 142,
-      "pdf_rel": "Dhamma_Books/the-world-in-the-buddhist-sense.pdf"
+      "pdf_rel": "Dhamma_Books/the-world-in-the-buddhist-sense.pdf",
+      "is_readable": true,
+      "total_chapters": 8,
+      "total_words": 37118
     },
     {
       "id": "dhamma_time-with-sujin",
       "title": "Time With Sujin",
       "category": "Dhamma Books",
       "pages": 24,
-      "pdf_rel": "Dhamma_Books/time-with-sujin.pdf"
+      "pdf_rel": "Dhamma_Books/time-with-sujin.pdf",
+      "is_readable": true,
+      "total_chapters": 1,
+      "total_words": 6366
     },
     {
       "id": "dhamma_understanding-life-now",
       "title": "Understanding Life Now",
       "category": "Dhamma Books",
       "pages": 479,
-      "pdf_rel": "Dhamma_Books/understanding-life-now.pdf"
+      "pdf_rel": "Dhamma_Books/understanding-life-now.pdf",
+      "is_readable": true,
+      "total_chapters": 20,
+      "total_words": 140024
     }
   ],
   "children_books": [
@@ -4236,28 +4392,40 @@
       "title": "Abhidhamma",
       "category": "Children Books",
       "pages": 84,
-      "pdf_rel": "Children_Books/abhidhamma.pdf"
+      "pdf_rel": "Children_Books/abhidhamma.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 29786
     },
     {
       "id": "child_journey",
       "title": "Journey",
       "category": "Children Books",
       "pages": 80,
-      "pdf_rel": "Children_Books/journey.pdf"
+      "pdf_rel": "Children_Books/journey.pdf",
+      "is_readable": true,
+      "total_chapters": 6,
+      "total_words": 26797
     },
     {
       "id": "child_ten-perfections-little",
       "title": "Ten Perfections Little",
       "category": "Children Books",
       "pages": 45,
-      "pdf_rel": "Children_Books/ten-perfections-little.pdf"
+      "pdf_rel": "Children_Books/ten-perfections-little.pdf",
+      "is_readable": true,
+      "total_chapters": 3,
+      "total_words": 10766
     },
     {
       "id": "child_ten-perfections",
       "title": "Ten Perfections",
       "category": "Children Books",
       "pages": 67,
-      "pdf_rel": "Children_Books/ten-perfections.pdf"
+      "pdf_rel": "Children_Books/ten-perfections.pdf",
+      "is_readable": true,
+      "total_chapters": 5,
+      "total_words": 24889
     }
   ],
   "total_library_books": 64

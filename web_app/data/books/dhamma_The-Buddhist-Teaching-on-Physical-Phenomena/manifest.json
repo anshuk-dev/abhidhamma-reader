@@ -1,0 +1,80 @@
+{
+  "id": "dhamma_The-Buddhist-Teaching-on-Physical-Phenomena",
+  "title": "The Buddhist Teaching On Physical Phenomena",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 102,
+  "total_words": 27710,
+  "total_chapters": 6,
+  "pdf_rel": "Dhamma_Books/The-Buddhist-Teaching-on-Physical-Phenomena.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The Buddhist Teaching (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 5025,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "presents itself and when there is awareness of it  (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 5997,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "impact on the bodysense, body-consciousness (k¯aya (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 5636,
+      "reading_time_min": 28
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Chapter 6 (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 6113,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "nose (smellingsense) (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 4577,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "vatthu base, physical base of citta. (p. 101–102)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 102,
+      "page_count": 2,
+      "word_count": 362,
+      "reading_time_min": 2
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "dhamma_realities-and-concepts",
+  "title": "Realities And Concepts",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 39,
+  "total_words": 14664,
+  "total_chapters": 7,
+  "pdf_rel": "Dhamma_Books/realities-and-concepts.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Front Matter & Introduction",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 1,
+      "page_count": 1,
+      "word_count": 29,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Contents",
+      "level": 1,
+      "start_page": 2,
+      "end_page": 2,
+      "page_count": 1,
+      "word_count": 61,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Foreword",
+      "level": 1,
+      "start_page": 3,
+      "end_page": 3,
+      "page_count": 1,
+      "word_count": 354,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Part I",
+      "level": 1,
+      "start_page": 4,
+      "end_page": 15,
+      "page_count": 12,
+      "word_count": 5025,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Part II",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 26,
+      "page_count": 11,
+      "word_count": 4249,
+      "reading_time_min": 21
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Part III",
+      "level": 1,
+      "start_page": 27,
+      "end_page": 37,
+      "page_count": 11,
+      "word_count": 4643,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Appendix",
+      "level": 1,
+      "start_page": 38,
+      "end_page": 39,
+      "page_count": 2,
+      "word_count": 303,
+      "reading_time_min": 2
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "dhamma_time-with-sujin",
+  "title": "Time With Sujin",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 24,
+  "total_words": 6366,
+  "total_chapters": 1,
+  "pdf_rel": "Dhamma_Books/time-with-sujin.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "My Time with Acharn Sujin. (p. 1–24)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 24,
+      "page_count": 24,
+      "word_count": 6366,
+      "reading_time_min": 32
+    }
+  ]
+}

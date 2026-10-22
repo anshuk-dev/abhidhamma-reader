@@ -1,0 +1,102 @@
+{
+  "id": "dhamma_the-world-in-the-buddhist-sense",
+  "title": "The World In The Buddhist Sense",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 142,
+  "total_words": 37118,
+  "total_chapters": 8,
+  "pdf_rel": "Dhamma_Books/the-world-in-the-buddhist-sense.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The World in the Buddhist Sense (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 5199,
+      "reading_time_min": 26
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "world of self, people and possessions. (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 5740,
+      "reading_time_min": 29
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "with regard to the aim. The goal is the eradicatio (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 5939,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Direct experience (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 5869,
+      "reading_time_min": 29
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "and through insight based on the fourth jh¯ana att (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 5219,
+      "reading_time_min": 26
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Doing complicated things (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 5949,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "loud laugh. (Wondering) “What is that?”, the Elder (p. 121–140)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 140,
+      "page_count": 20,
+      "word_count": 2861,
+      "reading_time_min": 14
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": " A Survey of Paramattha Dhammas by Sujin Boriharn (p. 141–142)",
+      "level": 1,
+      "start_page": 141,
+      "end_page": 142,
+      "page_count": 2,
+      "word_count": 342,
+      "reading_time_min": 2
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "dhamma_Considering-the-Truth",
+  "title": "Considering The Truth",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 47,
+  "total_words": 18842,
+  "total_chapters": 4,
+  "pdf_rel": "Dhamma_Books/Considering-the-Truth.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Considering the Truth (p. 1–15)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 15,
+      "page_count": 15,
+      "word_count": 5675,
+      "reading_time_min": 28
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Against the stream of common thought (p. 16–30)",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 30,
+      "page_count": 15,
+      "word_count": 6062,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "The factors leading to enlightenment (p. 31–45)",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 45,
+      "page_count": 15,
+      "word_count": 6516,
+      "reading_time_min": 33
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "What is most valuable in life (p. 46–47)",
+      "level": 1,
+      "start_page": 46,
+      "end_page": 47,
+      "page_count": 2,
+      "word_count": 589,
+      "reading_time_min": 3
+    }
+  ]
+}

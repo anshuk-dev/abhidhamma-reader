@@ -1,0 +1,201 @@
+{
+  "id": "sutta_the-guide-nettippakarana",
+  "title": "The Guide (Nettippakaraṇa)",
+  "subtitle": "According to Kaccāna Thera",
+  "author": "Bhikkhu Ñāṇamoli",
+  "category": "Sutta Piṭaka",
+  "description": "An ancient exegetical work attributed to Mahākaccāna, explaining the textual methodology for interpreting the Buddha’s discourses.",
+  "total_pages": 402,
+  "total_words": 141441,
+  "total_chapters": 17,
+  "pdf_rel": "Sutta_Pitaka/the-guide-nettippakarana.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "THE GUIDE (p. 1–25)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 25,
+      "page_count": 25,
+      "word_count": 9268,
+      "reading_time_min": 46
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Translator's Introduction (p. 26–50)",
+      "level": 1,
+      "start_page": 26,
+      "end_page": 50,
+      "page_count": 25,
+      "word_count": 10681,
+      "reading_time_min": 53
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "The Guide (p. 51–75)",
+      "level": 1,
+      "start_page": 51,
+      "end_page": 75,
+      "page_count": 25,
+      "word_count": 6994,
+      "reading_time_min": 35
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Contents in Detail (p. 76–100)",
+      "level": 1,
+      "start_page": 76,
+      "end_page": 100,
+      "page_count": 25,
+      "word_count": 6663,
+      "reading_time_min": 33
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "The Guide (p. 101–125)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 125,
+      "page_count": 25,
+      "word_count": 10463,
+      "reading_time_min": 52
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "16 Modes of Conveying in Separate Treatment (p. 126–150)",
+      "level": 1,
+      "start_page": 126,
+      "end_page": 150,
+      "page_count": 25,
+      "word_count": 9730,
+      "reading_time_min": 49
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "The Guide (p. 151–175)",
+      "level": 1,
+      "start_page": 151,
+      "end_page": 175,
+      "page_count": 25,
+      "word_count": 9687,
+      "reading_time_min": 48
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "16 Modes of Conveying in Separate Treatment (p. 176–200)",
+      "level": 1,
+      "start_page": 176,
+      "end_page": 200,
+      "page_count": 25,
+      "word_count": 9379,
+      "reading_time_min": 47
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "The Guide (p. 201–225)",
+      "level": 1,
+      "start_page": 201,
+      "end_page": 225,
+      "page_count": 25,
+      "word_count": 9257,
+      "reading_time_min": 46
+    },
+    {
+      "id": "ch_010",
+      "chapter_number": 10,
+      "title": "The Moulding of the Guide-Lines (p. 226–250)",
+      "level": 1,
+      "start_page": 226,
+      "end_page": 250,
+      "page_count": 25,
+      "word_count": 8776,
+      "reading_time_min": 44
+    },
+    {
+      "id": "ch_011",
+      "chapter_number": 11,
+      "title": "The Guide (p. 251–275)",
+      "level": 1,
+      "start_page": 251,
+      "end_page": 275,
+      "page_count": 25,
+      "word_count": 8332,
+      "reading_time_min": 42
+    },
+    {
+      "id": "ch_012",
+      "chapter_number": 12,
+      "title": "The Pattern of the Dispensation (p. 276–300)",
+      "level": 1,
+      "start_page": 276,
+      "end_page": 300,
+      "page_count": 25,
+      "word_count": 8846,
+      "reading_time_min": 44
+    },
+    {
+      "id": "ch_013",
+      "chapter_number": 13,
+      "title": "The Guide (p. 301–325)",
+      "level": 1,
+      "start_page": 301,
+      "end_page": 325,
+      "page_count": 25,
+      "word_count": 9113,
+      "reading_time_min": 46
+    },
+    {
+      "id": "ch_014",
+      "chapter_number": 14,
+      "title": "The Pattern of the Dispensation (p. 326–350)",
+      "level": 1,
+      "start_page": 326,
+      "end_page": 350,
+      "page_count": 25,
+      "word_count": 9563,
+      "reading_time_min": 48
+    },
+    {
+      "id": "ch_015",
+      "chapter_number": 15,
+      "title": "pervert, to (vipalldsayati) 493 (p. 351–375)",
+      "level": 1,
+      "start_page": 351,
+      "end_page": 375,
+      "page_count": 25,
+      "word_count": 8276,
+      "reading_time_min": 41
+    },
+    {
+      "id": "ch_016",
+      "chapter_number": 16,
+      "title": "Pali-English Glossary (p. 376–400)",
+      "level": 1,
+      "start_page": 376,
+      "end_page": 400,
+      "page_count": 25,
+      "word_count": 5999,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_017",
+      "chapter_number": 17,
+      "title": "The Guide (p. 401–402)",
+      "level": 1,
+      "start_page": 401,
+      "end_page": 402,
+      "page_count": 2,
+      "word_count": 414,
+      "reading_time_min": 2
+    }
+  ]
+}

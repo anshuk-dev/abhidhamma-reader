@@ -437,21 +437,52 @@
       
       items.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'library-item-card';
+        const isActive = (item.id === STATE.activeBookId);
+        card.className = `library-item-card ${isActive ? 'active' : ''}`;
+        card.dataset.bookId = item.id;
+        
         card.innerHTML = `
           <div class="library-item-title">${item.title}</div>
           ${item.subtitle ? `<div class="library-item-desc">${item.subtitle}</div>` : ''}
           ${item.author ? `<div class="library-item-desc">${item.author}</div>` : ''}
-          <div class="library-item-desc" style="color: var(--text-muted);">${item.pages} pages</div>
-          <a class="library-item-link" href="../${item.pdf_rel}" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-            Open Original PDF
-          </a>
+          <div class="library-item-desc" style="color: var(--text-muted); font-size: 0.72rem; margin-top: 4px;">
+            ${item.total_chapters || '—'} chapters · ${item.pages} pages
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 8px; align-items: center;">
+            <button class="read-html-btn" data-book-id="${item.id}" style="
+              display: inline-flex;
+              align-items: center;
+              gap: 4px;
+              font-size: 0.76rem;
+              font-weight: 600;
+              padding: 4px 10px;
+              border-radius: var(--radius-sm);
+              background-color: var(--accent-color);
+              color: var(--accent-contrast);
+              cursor: pointer;
+            ">
+              📖 Read HTML
+            </button>
+            <a class="library-item-link" href="../${item.pdf_rel}" target="_blank" rel="noopener" style="margin-top: 0; font-size: 0.74rem;">
+              PDF ↗
+            </a>
+          </div>
         `;
+        
+        // Clicking anywhere on card or Read HTML button opens reader
+        card.querySelector('.read-html-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectBook(item.id);
+          switchDrawerTab('tab-active-toc');
+          closeDrawer();
+        });
+        
+        card.addEventListener('click', () => {
+          selectBook(item.id);
+          switchDrawerTab('tab-active-toc');
+          closeDrawer();
+        });
+        
         container.appendChild(card);
       });
     });

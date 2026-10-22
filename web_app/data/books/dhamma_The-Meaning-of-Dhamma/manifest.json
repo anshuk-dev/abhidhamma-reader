@@ -1,0 +1,25 @@
+{
+  "id": "dhamma_The-Meaning-of-Dhamma",
+  "title": "The Meaning Of Dhamma",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 13,
+  "total_words": 7708,
+  "total_chapters": 1,
+  "pdf_rel": "Dhamma_Books/The-Meaning-of-Dhamma.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The Meaning of Dhamma (p. 1–13)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 13,
+      "page_count": 13,
+      "word_count": 7708,
+      "reading_time_min": 39
+    }
+  ]
+}

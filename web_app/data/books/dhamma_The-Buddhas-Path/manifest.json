@@ -1,0 +1,91 @@
+{
+  "id": "dhamma_The-Buddhas-Path",
+  "title": "The Buddhas Path",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 121,
+  "total_words": 40438,
+  "total_chapters": 7,
+  "pdf_rel": "Dhamma_Books/The-Buddhas-Path.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The Buddha’s Path (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 5051,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Chapter 2 (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 7315,
+      "reading_time_min": 37
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "not conform to the image we have of him we are dis (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 6577,
+      "reading_time_min": 33
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "seen or heard or think of the nature of the object (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 7499,
+      "reading_time_min": 37
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "if there is no right understanding of the realitie (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 7504,
+      "reading_time_min": 38
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "visible object appears it can be understood that i (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 6212,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "9.2. BOOKS TRANSLATED BY NINA VAN GORKOM (p. 121–121)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 121,
+      "page_count": 1,
+      "word_count": 280,
+      "reading_time_min": 1
+    }
+  ]
+}

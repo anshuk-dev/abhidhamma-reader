@@ -1,0 +1,25 @@
+{
+  "id": "dhamma_The-cycle-of-Birth-and-Death",
+  "title": "The Cycle Of Birth And Death",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 28,
+  "total_words": 13477,
+  "total_chapters": 1,
+  "pdf_rel": "Dhamma_Books/The-cycle-of-Birth-and-Death.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "In Memory of Lodewijk. (p. 1–28)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 28,
+      "page_count": 28,
+      "word_count": 13477,
+      "reading_time_min": 67
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "dhamma_Confidence-In-The-Buddhas-Teaching",
+  "title": "Confidence In The Buddhas Teaching",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 39,
+  "total_words": 16262,
+  "total_chapters": 3,
+  "pdf_rel": "Dhamma_Books/Confidence-In-The-Buddhas-Teaching.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Confidence in the Buddha’s Teachings (p. 1–15)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 15,
+      "page_count": 15,
+      "word_count": 6014,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "What is Sati (p. 16–30)",
+      "level": 1,
+      "start_page": 16,
+      "end_page": 30,
+      "page_count": 15,
+      "word_count": 6708,
+      "reading_time_min": 34
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Basic Aspects of Dhamma (p. 31–39)",
+      "level": 1,
+      "start_page": 31,
+      "end_page": 39,
+      "page_count": 9,
+      "word_count": 3540,
+      "reading_time_min": 18
+    }
+  ]
+}

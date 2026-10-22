@@ -513,12 +513,24 @@ a:hover {
 }
 
 .library-item-card {
-  padding: 10px 12px;
+  padding: 12px;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: block;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.library-item-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.library-item-card.active {
+  border-color: var(--accent-color);
+  background-color: var(--accent-soft);
 }
 
 .library-item-title {

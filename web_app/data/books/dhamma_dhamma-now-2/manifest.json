@@ -1,0 +1,80 @@
+{
+  "id": "dhamma_dhamma-now-2",
+  "title": "Dhamma Now 2",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 114,
+  "total_words": 28682,
+  "total_chapters": 6,
+  "pdf_rel": "Dhamma_Books/dhamma-now-2.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Dhamma Now 2 (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 4657,
+      "reading_time_min": 23
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "as right view. For one of right view, unarisen who (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 5526,
+      "reading_time_min": 28
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "July 2021 (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 5163,
+      "reading_time_min": 26
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "loss of relatives. . . the loss of wealth . . . lo (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 5300,
+      "reading_time_min": 26
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "January 2022 (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 5454,
+      "reading_time_min": 27
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "comes cessation of volitional formations; with the (p. 101–114)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 114,
+      "page_count": 14,
+      "word_count": 2582,
+      "reading_time_min": 13
+    }
+  ]
+}

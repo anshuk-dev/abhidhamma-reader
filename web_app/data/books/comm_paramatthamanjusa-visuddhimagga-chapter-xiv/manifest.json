@@ -1,0 +1,102 @@
+{
+  "id": "comm_paramatthamanjusa-visuddhimagga-chapter-xiv",
+  "title": "The Paramatthamañjūsā — Visuddhimagga XIV",
+  "subtitle": "",
+  "author": "Dhammapāla · Translated by Nina van Gorkom",
+  "category": "Commentaries & Manuals",
+  "description": "The Mahāṭīkā commentary on Chapter XIV of the Visuddhimagga, elucidating the ultimate realities (paramattha dhammas).",
+  "total_pages": 157,
+  "total_words": 60973,
+  "total_chapters": 8,
+  "pdf_rel": "Commentaries_and_Manuals/paramatthamanjusa-visuddhimagga-chapter-xiv.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "The Paramatthamañjūsā (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 6615,
+      "reading_time_min": 33
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 8478,
+      "reading_time_min": 42
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 8985,
+      "reading_time_min": 45
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 8499,
+      "reading_time_min": 42
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 7319,
+      "reading_time_min": 37
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 101–120)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 120,
+      "page_count": 20,
+      "word_count": 6956,
+      "reading_time_min": 35
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 121–140)",
+      "level": 1,
+      "start_page": 121,
+      "end_page": 140,
+      "page_count": 20,
+      "word_count": 8015,
+      "reading_time_min": 40
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Paramatthamañjūsā — Visuddhimagga XIV (p. 141–157)",
+      "level": 1,
+      "start_page": 141,
+      "end_page": 157,
+      "page_count": 17,
+      "word_count": 6106,
+      "reading_time_min": 31
+    }
+  ]
+}

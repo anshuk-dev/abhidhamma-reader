@@ -1,0 +1,157 @@
+{
+  "id": "dhamma_Cetasikas",
+  "title": "Cetasikas",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 322,
+  "total_words": 134007,
+  "total_chapters": 13,
+  "pdf_rel": "Dhamma_Books/Cetasikas.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Cetasikas (p. 1–25)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 25,
+      "page_count": 25,
+      "word_count": 13421,
+      "reading_time_min": 67
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Cetasikas (p. 26–50)",
+      "level": 1,
+      "start_page": 26,
+      "end_page": 50,
+      "page_count": 25,
+      "word_count": 12118,
+      "reading_time_min": 61
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Chapter 6: Volition in the Cycle of Birth and Deat (p. 51–75)",
+      "level": 1,
+      "start_page": 51,
+      "end_page": 75,
+      "page_count": 25,
+      "word_count": 9513,
+      "reading_time_min": 48
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Cetasikas (p. 76–100)",
+      "level": 1,
+      "start_page": 76,
+      "end_page": 100,
+      "page_count": 25,
+      "word_count": 10727,
+      "reading_time_min": 54
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Chapter 13: Zeal (p. 101–125)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 125,
+      "page_count": 25,
+      "word_count": 10925,
+      "reading_time_min": 55
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Cetasikas (p. 126–150)",
+      "level": 1,
+      "start_page": 126,
+      "end_page": 150,
+      "page_count": 25,
+      "word_count": 12137,
+      "reading_time_min": 61
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Chapter 20: Envy, Stinginess, Regret (p. 151–175)",
+      "level": 1,
+      "start_page": 151,
+      "end_page": 175,
+      "page_count": 25,
+      "word_count": 10341,
+      "reading_time_min": 52
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Cetasikas (p. 176–200)",
+      "level": 1,
+      "start_page": 176,
+      "end_page": 200,
+      "page_count": 25,
+      "word_count": 10139,
+      "reading_time_min": 51
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "Chapter 27: Mindfulness (p. 201–225)",
+      "level": 1,
+      "start_page": 201,
+      "end_page": 225,
+      "page_count": 25,
+      "word_count": 11504,
+      "reading_time_min": 58
+    },
+    {
+      "id": "ch_010",
+      "chapter_number": 10,
+      "title": "Cetasikas (p. 226–250)",
+      "level": 1,
+      "start_page": 226,
+      "end_page": 250,
+      "page_count": 25,
+      "word_count": 10719,
+      "reading_time_min": 54
+    },
+    {
+      "id": "ch_011",
+      "chapter_number": 11,
+      "title": "Chapter 34: Compassion and Sympathetic Joy (p. 251–275)",
+      "level": 1,
+      "start_page": 251,
+      "end_page": 275,
+      "page_count": 25,
+      "word_count": 11928,
+      "reading_time_min": 60
+    },
+    {
+      "id": "ch_012",
+      "chapter_number": 12,
+      "title": "Cetasikas (p. 276–300)",
+      "level": 1,
+      "start_page": 276,
+      "end_page": 300,
+      "page_count": 25,
+      "word_count": 7359,
+      "reading_time_min": 37
+    },
+    {
+      "id": "ch_013",
+      "chapter_number": 13,
+      "title": "Chapter 45: Appendix to Chapter 31 (p. 301–322)",
+      "level": 1,
+      "start_page": 301,
+      "end_page": 322,
+      "page_count": 22,
+      "word_count": 3176,
+      "reading_time_min": 16
+    }
+  ]
+}

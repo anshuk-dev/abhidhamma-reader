@@ -1,0 +1,80 @@
+{
+  "id": "dhamma_Introduction-to-the-Buddhist-Scriptures",
+  "title": "Introduction To The Buddhist Scriptures",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 101,
+  "total_words": 30069,
+  "total_chapters": 6,
+  "pdf_rel": "Dhamma_Books/Introduction-to-the-Buddhist-Scriptures.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Intoduction to the Buddhist Scriptures (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 4913,
+      "reading_time_min": 25
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Chapter 2 (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 6908,
+      "reading_time_min": 35
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "of the Dhamma, by discussions about it, by conside (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 6282,
+      "reading_time_min": 31
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "pass away, the text is not cut down at the root, i (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 5900,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "life these four postures are assumed time and agai (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 5958,
+      "reading_time_min": 30
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "A.3. BOOKS TRANSLATED BY NINA VAN GORKOM (p. 101–101)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 101,
+      "page_count": 1,
+      "word_count": 108,
+      "reading_time_min": 1
+    }
+  ]
+}

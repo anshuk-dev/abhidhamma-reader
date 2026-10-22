@@ -1,0 +1,113 @@
+{
+  "id": "dhamma_alone_with_dhamma",
+  "title": "Alone With Dhamma",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 27,
+  "total_words": 12027,
+  "total_chapters": 9,
+  "pdf_rel": "Dhamma_Books/alone_with_dhamma.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Front Matter & Introduction",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 2,
+      "page_count": 2,
+      "word_count": 8,
+      "reading_time_min": 1
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Chapter 1",
+      "level": 1,
+      "start_page": 3,
+      "end_page": 3,
+      "page_count": 1,
+      "word_count": 357,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "Alone with Dhamma",
+      "level": 2,
+      "start_page": 3,
+      "end_page": 8,
+      "page_count": 6,
+      "word_count": 2409,
+      "reading_time_min": 12
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Chapter 2",
+      "level": 1,
+      "start_page": 9,
+      "end_page": 9,
+      "page_count": 1,
+      "word_count": 410,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "Remembrance of the Dhamma",
+      "level": 2,
+      "start_page": 9,
+      "end_page": 14,
+      "page_count": 6,
+      "word_count": 2584,
+      "reading_time_min": 13
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "Chapter 3",
+      "level": 1,
+      "start_page": 15,
+      "end_page": 15,
+      "page_count": 1,
+      "word_count": 352,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_007",
+      "chapter_number": 7,
+      "title": "Samatha and Vipassanå",
+      "level": 2,
+      "start_page": 15,
+      "end_page": 20,
+      "page_count": 6,
+      "word_count": 2469,
+      "reading_time_min": 12
+    },
+    {
+      "id": "ch_008",
+      "chapter_number": 8,
+      "title": "Chapter 4",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 21,
+      "page_count": 1,
+      "word_count": 361,
+      "reading_time_min": 2
+    },
+    {
+      "id": "ch_009",
+      "chapter_number": 9,
+      "title": "The Present Moment",
+      "level": 2,
+      "start_page": 21,
+      "end_page": 27,
+      "page_count": 7,
+      "word_count": 3077,
+      "reading_time_min": 15
+    }
+  ]
+}

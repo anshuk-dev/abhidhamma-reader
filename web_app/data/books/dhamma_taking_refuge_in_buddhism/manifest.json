@@ -1,0 +1,80 @@
+{
+  "id": "dhamma_taking_refuge_in_buddhism",
+  "title": "Taking Refuge In Buddhism",
+  "subtitle": "",
+  "author": "Abhidhamma.org",
+  "category": "Dhamma Books",
+  "description": "",
+  "total_pages": 109,
+  "total_words": 28833,
+  "total_chapters": 6,
+  "pdf_rel": "Dhamma_Books/taking_refuge_in_buddhism.pdf",
+  "chapters": [
+    {
+      "id": "ch_001",
+      "chapter_number": 1,
+      "title": "Buddhism (p. 1–20)",
+      "level": 1,
+      "start_page": 1,
+      "end_page": 20,
+      "page_count": 20,
+      "word_count": 4179,
+      "reading_time_min": 21
+    },
+    {
+      "id": "ch_002",
+      "chapter_number": 2,
+      "title": "Mental Phenomena and Physical Phenomena•21 (p. 21–40)",
+      "level": 1,
+      "start_page": 21,
+      "end_page": 40,
+      "page_count": 20,
+      "word_count": 5484,
+      "reading_time_min": 27
+    },
+    {
+      "id": "ch_003",
+      "chapter_number": 3,
+      "title": "The Meaning of Dhamma•41 (p. 41–60)",
+      "level": 1,
+      "start_page": 41,
+      "end_page": 60,
+      "page_count": 20,
+      "word_count": 5689,
+      "reading_time_min": 28
+    },
+    {
+      "id": "ch_004",
+      "chapter_number": 4,
+      "title": "Different Degrees of Understanding•61 (p. 61–80)",
+      "level": 1,
+      "start_page": 61,
+      "end_page": 80,
+      "page_count": 20,
+      "word_count": 5744,
+      "reading_time_min": 29
+    },
+    {
+      "id": "ch_005",
+      "chapter_number": 5,
+      "title": "The Right Way and the Wrong Way•81 (p. 81–100)",
+      "level": 1,
+      "start_page": 81,
+      "end_page": 100,
+      "page_count": 20,
+      "word_count": 5852,
+      "reading_time_min": 29
+    },
+    {
+      "id": "ch_006",
+      "chapter_number": 6,
+      "title": "•101 (p. 101–109)",
+      "level": 1,
+      "start_page": 101,
+      "end_page": 109,
+      "page_count": 9,
+      "word_count": 1885,
+      "reading_time_min": 9
+    }
+  ]
+}
