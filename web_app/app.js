@@ -822,9 +822,10 @@
     container.innerHTML = '';
     
     const sections = [
+      { key: 'abhidhamma_pitaka', title: 'Canonical Abhidhamma Piṭaka', badge: 'Canonical' },
       { key: 'sutta_pitaka', title: 'Sutta Piṭaka', badge: 'Canonical' },
       { key: 'commentaries', title: 'Commentaries & Manuals', badge: 'Exegesis' },
-      { key: 'dhamma_books', title: 'Dhamma & Abhidhamma Books', badge: 'Study' },
+      { key: 'dhamma_books', title: 'Dhamma & Abhidhamma Studies', badge: 'Study' },
       { key: 'children_books', title: 'Illustrated Children’s Books', badge: 'Introductory' }
     ];
     
@@ -839,21 +840,54 @@
       
       items.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'library-item-card';
+        const isActive = (item.id === STATE.activeBookId);
+        card.className = `library-item-card ${isActive ? 'active' : ''}`;
+        card.dataset.bookId = item.id;
+        
+        const authorDesc = item.author ? `<div class="library-item-desc author">${escapeHtml(item.author)}</div>` : (item.translator ? `<div class="library-item-desc author">${escapeHtml(item.translator)}</div>` : '');
+        const pageMeta = item.total_pages ? `${item.total_pages} pages` : (item.pages ? `${item.pages} pages` : 'Complete');
+
         card.innerHTML = `
-          <div class="library-item-title">${item.title}</div>
-          ${item.subtitle ? `<div class="library-item-desc">${item.subtitle}</div>` : ''}
-          ${item.author ? `<div class="library-item-desc">${item.author}</div>` : ''}
-          <div class="library-item-desc" style="color: var(--text-muted);">${item.pages} pages</div>
-          <a class="library-item-link" href="../${item.pdf_rel}" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-            Open Original PDF
-          </a>
+          <div class="library-card-header">
+            <div class="library-item-title">${escapeHtml(item.title)}</div>
+            <span class="library-item-badge">${sec.badge}</span>
+          </div>
+          ${item.subtitle ? `<div class="library-item-desc">${escapeHtml(item.subtitle)}</div>` : ''}
+          ${authorDesc}
+          <div class="library-item-meta">${pageMeta}</div>
+          <div class="library-card-actions">
+            <button class="lib-action-btn read-html-btn" data-book-id="${item.id}" title="Read HTML Text">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Read Text</span>
+            </button>
+            <button class="lib-action-btn open-pdf-btn" data-book-id="${item.id}" title="Open Original PDF Facsimile">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span>Open PDF</span>
+            </button>
+          </div>
         `;
+        
+        card.querySelector('.read-html-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectBook(item.id);
+          setReadingMode('html');
+          switchDrawerTab('tab-active-toc');
+          closeDrawer();
+        });
+
+        card.querySelector('.open-pdf-btn').addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectBook(item.id);
+          setReadingMode('pdf');
+          closeDrawer();
+        });
+
+        card.addEventListener('click', () => {
+          selectBook(item.id);
+          switchDrawerTab('tab-active-toc');
+          closeDrawer();
+        });
+
         container.appendChild(card);
       });
     });

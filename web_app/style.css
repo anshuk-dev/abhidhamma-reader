@@ -568,34 +568,109 @@ a:hover {
 }
 
 .library-item-card {
-  padding: 10px 12px;
-  background-color: var(--bg-primary);
+  padding: 12px 14px;
+  background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: block;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.library-item-card:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-focus);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.library-item-card.active {
+  background-color: var(--accent-soft);
+  border-color: var(--accent-color);
+}
+
+.library-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .library-item-title {
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.library-item-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 2px 7px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .library-item-desc {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
+  line-height: 1.4;
   margin-top: 2px;
 }
 
-.library-item-link {
+.library-item-desc.author {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.library-item-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.library-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+.lib-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.74rem;
+  gap: 5px;
+  font-size: 0.75rem;
   font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lib-action-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--badge-text);
+  border-color: var(--accent-color);
+}
+
+.lib-action-btn.open-pdf-btn {
   color: var(--accent-color);
-  margin-top: 6px;
+}
+
+.lib-action-btn.open-pdf-btn:hover {
+  color: var(--badge-text);
 }
 
 /* ==========================================================================
@@ -950,16 +1025,50 @@ mark {
    ========================================================================== */
 
 /* Table of Contents Rows & Perfect Leader Line Alignment */
+.toc-table-container {
+  margin: 16px 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toc-heading {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+}
+
+.toc-section-title {
+  font-family: var(--reader-font-family);
+  font-size: 1.08em;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 22px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+
 .toc-table-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-  margin: 6px 0;
-  padding: 3px 0;
+  margin: 5px 0;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
   font-size: calc(var(--reader-font-size) * 0.94);
   line-height: 1.45;
   color: var(--text-primary);
+  transition: background-color var(--transition-fast);
+}
+
+.toc-table-row:hover {
+  background-color: var(--bg-hover);
+}
+
+.toc-table-row.toc-row-nested {
+  padding-left: 1.6rem;
 }
 
 .toc-row-title {
@@ -971,8 +1080,8 @@ mark {
 .toc-row-leader {
   flex: 1 1 auto;
   border-bottom: 1px dotted var(--border-color);
-  margin: 0 8px;
-  min-width: 20px;
+  margin: 0 10px;
+  min-width: 24px;
   position: relative;
   top: -4px;
 }
@@ -986,6 +1095,45 @@ mark {
   color: var(--accent-color);
   text-align: right;
   min-width: 28px;
+}
+
+/* Catechism Q&A Blocks */
+.qa-block {
+  margin: 20px 0;
+  padding: 14px 18px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+[data-theme="obsidian"] .qa-block {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+.qa-q {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-size: calc(var(--reader-font-size) * 1.02);
+}
+
+.qa-a {
+  color: var(--text-primary);
+  line-height: var(--reader-line-height);
+}
+
+.pts-margin-tag {
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background-color: var(--accent-soft);
+  padding: 1px 7px;
+  border-radius: 4px;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 /* Mātikā Grids & Analytical Data Pairs */

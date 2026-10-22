@@ -345,7 +345,8 @@
           "word_count": 3017,
           "reading_time_min": 15
         }
-      ]
+      ],
+      "pdf_file": "pdfs/dhammasangani.pdf"
     },
     {
       "id": "vibhanga",
@@ -647,7 +648,8 @@
           "word_count": 3251,
           "reading_time_min": 16
         }
-      ]
+      ],
+      "pdf_file": "pdfs/vibhanga.pdf"
     },
     {
       "id": "dhatukatha",
@@ -894,7 +896,8 @@
           "word_count": 2996,
           "reading_time_min": 15
         }
-      ]
+      ],
+      "pdf_file": "pdfs/dhatukatha.pdf"
     },
     {
       "id": "puggalapannatti",
@@ -1075,7 +1078,8 @@
           "word_count": 244,
           "reading_time_min": 1
         }
-      ]
+      ],
+      "pdf_file": "pdfs/puggalapannatti.pdf"
     },
     {
       "id": "kathavatthu",
@@ -1410,7 +1414,8 @@
           "word_count": 13833,
           "reading_time_min": 69
         }
-      ]
+      ],
+      "pdf_file": "pdfs/kathavatthu.pdf"
     },
     {
       "id": "yamaka",
@@ -3362,7 +3367,8 @@
           "word_count": 1551,
           "reading_time_min": 8
         }
-      ]
+      ],
+      "pdf_file": "pdfs/yamaka.pdf"
     },
     {
       "id": "patthana_vol1",
@@ -3532,7 +3538,8 @@
           "word_count": 61303,
           "reading_time_min": 307
         }
-      ]
+      ],
+      "pdf_file": "pdfs/patthana_vol1.pdf"
     },
     {
       "id": "patthana_vol2",
@@ -3845,7 +3852,8 @@
           "word_count": 164814,
           "reading_time_min": 824
         }
-      ]
+      ],
+      "pdf_file": "pdfs/patthana_vol2.pdf"
     }
   ],
   "total_abhidhamma_volumes": 8,
@@ -3863,7 +3871,8 @@
       "description": "An ancient exegetical work attributed to Mahākaccāna, explaining the textual methodology for interpreting the Buddha’s discourses.",
       "is_readable": true,
       "total_chapters": 17,
-      "total_words": 141441
+      "total_words": 141441,
+      "pdf_file": "pdfs/sutta_the-guide-nettippakarana.pdf"
     }
   ],
   "commentaries": [
@@ -3877,7 +3886,8 @@
       "description": "The great 5th-century encyclopedia of Theravada Buddhist doctrine and meditation practice.",
       "is_readable": true,
       "total_chapters": 29,
-      "total_words": 426639
+      "total_words": 426639,
+      "pdf_file": "pdfs/comm_PathofPurification2011.pdf"
     },
     {
       "id": "comm_bp304s_Bfodhi_Comprehensive_Manual_of_Abhidhamma",
@@ -3889,7 +3899,8 @@
       "description": "The modern standard introduction to classical Theravada Abhidhamma, providing systematic tables and analytical explanations.",
       "is_readable": true,
       "total_chapters": 13,
-      "total_words": 89879
+      "total_words": 89879,
+      "pdf_file": "pdfs/comm_bp304s_Bfodhi_Comprehensive_Manual_of_Abhidhamma.pdf"
     },
     {
       "id": "comm_paramatthamanjusa-visuddhimagga-chapter-xiv",
@@ -3901,7 +3912,8 @@
       "description": "The Mahāṭīkā commentary on Chapter XIV of the Visuddhimagga, elucidating the ultimate realities (paramattha dhammas).",
       "is_readable": true,
       "total_chapters": 8,
-      "total_words": 60973
+      "total_words": 60973,
+      "pdf_file": "pdfs/comm_paramatthamanjusa-visuddhimagga-chapter-xiv.pdf"
     }
   ],
   "dhamma_books": [
@@ -3913,7 +3925,8 @@
       "pdf_rel": "Dhamma_Books/A-Survey-of-Paramattha-Dhammas.pdf",
       "is_readable": true,
       "total_chapters": 17,
-      "total_words": 150001
+      "total_words": 150001,
+      "pdf_file": "pdfs/dhamma_A-Survey-of-Paramattha-Dhammas.pdf"
     },
     {
       "id": "dhamma_Abhidhamma-in-Daily-Life",
@@ -3923,7 +3936,8 @@
       "pdf_rel": "Dhamma_Books/Abhidhamma-in-Daily-Life.pdf",
       "is_readable": true,
       "total_chapters": 30,
-      "total_words": 84862
+      "total_words": 84862,
+      "pdf_file": "pdfs/dhamma_Abhidhamma-in-Daily-Life.pdf"
     },
     {
       "id": "dhamma_Asokas-Footsteps",
@@ -3933,7 +3947,8 @@
       "pdf_rel": "Dhamma_Books/Asokas-Footsteps.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 26476
+      "total_words": 26476,
+      "pdf_file": "pdfs/dhamma_Asokas-Footsteps.pdf"
     },
     {
       "id": "dhamma_BUDDHISM-AND-THE-FEAR-OF-COVID-19",
@@ -3943,7 +3958,8 @@
       "pdf_rel": "Dhamma_Books/BUDDHISM-AND-THE-FEAR-OF-COVID-19.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 12133
+      "total_words": 12133,
+      "pdf_file": "pdfs/dhamma_BUDDHISM-AND-THE-FEAR-OF-COVID-19.pdf"
     },
     {
       "id": "dhamma_Buddhism-in-Daily-Life",
@@ -3953,7 +3969,8 @@
       "pdf_rel": "Dhamma_Books/Buddhism-in-Daily-Life.pdf",
       "is_readable": true,
       "total_chapters": 24,
-      "total_words": 69097
+      "total_words": 69097,
+      "pdf_file": "pdfs/dhamma_Buddhism-in-Daily-Life.pdf"
     },
     {
       "id": "dhamma_Cetasikas",
@@ -3963,7 +3980,8 @@
       "pdf_rel": "Dhamma_Books/Cetasikas.pdf",
       "is_readable": true,
       "total_chapters": 13,
-      "total_words": 134007
+      "total_words": 134007,
+      "pdf_file": "pdfs/dhamma_Cetasikas.pdf"
     },
     {
       "id": "dhamma_Confidence-In-The-Buddhas-Teaching",
@@ -3973,7 +3991,8 @@
       "pdf_rel": "Dhamma_Books/Confidence-In-The-Buddhas-Teaching.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 16262
+      "total_words": 16262,
+      "pdf_file": "pdfs/dhamma_Confidence-In-The-Buddhas-Teaching.pdf"
     },
     {
       "id": "dhamma_Considering-the-Truth",
@@ -3983,7 +4002,8 @@
       "pdf_rel": "Dhamma_Books/Considering-the-Truth.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 18842
+      "total_words": 18842,
+      "pdf_file": "pdfs/dhamma_Considering-the-Truth.pdf"
     },
     {
       "id": "dhamma_Introduction-to-the-Abhidhamma",
@@ -3993,7 +4013,8 @@
       "pdf_rel": "Dhamma_Books/Introduction-to-the-Abhidhamma.pdf",
       "is_readable": true,
       "total_chapters": 35,
-      "total_words": 20233
+      "total_words": 20233,
+      "pdf_file": "pdfs/dhamma_Introduction-to-the-Abhidhamma.pdf"
     },
     {
       "id": "dhamma_Introduction-to-the-Buddhist-Scriptures",
@@ -4003,7 +4024,8 @@
       "pdf_rel": "Dhamma_Books/Introduction-to-the-Buddhist-Scriptures.pdf",
       "is_readable": true,
       "total_chapters": 6,
-      "total_words": 30069
+      "total_words": 30069,
+      "pdf_file": "pdfs/dhamma_Introduction-to-the-Buddhist-Scriptures.pdf"
     },
     {
       "id": "dhamma_Journey_Egypt",
@@ -4013,7 +4035,8 @@
       "pdf_rel": "Dhamma_Books/Journey_Egypt.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 16739
+      "total_words": 16739,
+      "pdf_file": "pdfs/dhamma_Journey_Egypt.pdf"
     },
     {
       "id": "dhamma_Latent-Tendencies",
@@ -4023,7 +4046,8 @@
       "pdf_rel": "Dhamma_Books/Latent-Tendencies.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 18017
+      "total_words": 18017,
+      "pdf_file": "pdfs/dhamma_Latent-Tendencies.pdf"
     },
     {
       "id": "dhamma_Once-upon-a-time",
@@ -4033,7 +4057,8 @@
       "pdf_rel": "Dhamma_Books/Once-upon-a-time.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 17761
+      "total_words": 17761,
+      "pdf_file": "pdfs/dhamma_Once-upon-a-time.pdf"
     },
     {
       "id": "dhamma_Pali-Accents",
@@ -4043,7 +4068,8 @@
       "pdf_rel": "Dhamma_Books/Pali-Accents.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 732
+      "total_words": 732,
+      "pdf_file": "pdfs/dhamma_Pali-Accents.pdf"
     },
     {
       "id": "dhamma_Pilgrimage_India_unedited",
@@ -4053,7 +4079,8 @@
       "pdf_rel": "Dhamma_Books/Pilgrimage_India_unedited.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 23164
+      "total_words": 23164,
+      "pdf_file": "pdfs/dhamma_Pilgrimage_India_unedited.pdf"
     },
     {
       "id": "dhamma_SLRevisited",
@@ -4063,7 +4090,8 @@
       "pdf_rel": "Dhamma_Books/SLRevisited.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 27217
+      "total_words": 27217,
+      "pdf_file": "pdfs/dhamma_SLRevisited.pdf"
     },
     {
       "id": "dhamma_Sharing-Dhamma",
@@ -4073,7 +4101,8 @@
       "pdf_rel": "Dhamma_Books/Sharing-Dhamma.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 13489
+      "total_words": 13489,
+      "pdf_file": "pdfs/dhamma_Sharing-Dhamma.pdf"
     },
     {
       "id": "dhamma_Sri_Lanka",
@@ -4083,7 +4112,8 @@
       "pdf_rel": "Dhamma_Books/Sri_Lanka.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 20669
+      "total_words": 20669,
+      "pdf_file": "pdfs/dhamma_Sri_Lanka.pdf"
     },
     {
       "id": "dhamma_The-Buddhas-Path",
@@ -4093,7 +4123,8 @@
       "pdf_rel": "Dhamma_Books/The-Buddhas-Path.pdf",
       "is_readable": true,
       "total_chapters": 7,
-      "total_words": 40438
+      "total_words": 40438,
+      "pdf_file": "pdfs/dhamma_The-Buddhas-Path.pdf"
     },
     {
       "id": "dhamma_The-Buddhist-Teaching-on-Physical-Phenomena",
@@ -4103,7 +4134,8 @@
       "pdf_rel": "Dhamma_Books/The-Buddhist-Teaching-on-Physical-Phenomena.pdf",
       "is_readable": true,
       "total_chapters": 6,
-      "total_words": 27710
+      "total_words": 27710,
+      "pdf_file": "pdfs/dhamma_The-Buddhist-Teaching-on-Physical-Phenomena.pdf"
     },
     {
       "id": "dhamma_The-Conditionality-of-Life",
@@ -4113,7 +4145,8 @@
       "pdf_rel": "Dhamma_Books/The-Conditionality-of-Life.pdf",
       "is_readable": true,
       "total_chapters": 27,
-      "total_words": 60685
+      "total_words": 60685,
+      "pdf_file": "pdfs/dhamma_The-Conditionality-of-Life.pdf"
     },
     {
       "id": "dhamma_The-Meaning-of-Dhamma",
@@ -4123,7 +4156,8 @@
       "pdf_rel": "Dhamma_Books/The-Meaning-of-Dhamma.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 7708
+      "total_words": 7708,
+      "pdf_file": "pdfs/dhamma_The-Meaning-of-Dhamma.pdf"
     },
     {
       "id": "dhamma_The-Perfections",
@@ -4133,7 +4167,8 @@
       "pdf_rel": "Dhamma_Books/The-Perfections.pdf",
       "is_readable": true,
       "total_chapters": 31,
-      "total_words": 80192
+      "total_words": 80192,
+      "pdf_file": "pdfs/dhamma_The-Perfections.pdf"
     },
     {
       "id": "dhamma_The-Present-Moment",
@@ -4143,7 +4178,8 @@
       "pdf_rel": "Dhamma_Books/The-Present-Moment.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 13749
+      "total_words": 13749,
+      "pdf_file": "pdfs/dhamma_The-Present-Moment.pdf"
     },
     {
       "id": "dhamma_The-Shortness-of-Life",
@@ -4153,7 +4189,8 @@
       "pdf_rel": "Dhamma_Books/The-Shortness-of-Life.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 13346
+      "total_words": 13346,
+      "pdf_file": "pdfs/dhamma_The-Shortness-of-Life.pdf"
     },
     {
       "id": "dhamma_The-cycle-of-Birth-and-Death",
@@ -4163,7 +4200,8 @@
       "pdf_rel": "Dhamma_Books/The-cycle-of-Birth-and-Death.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 13477
+      "total_words": 13477,
+      "pdf_file": "pdfs/dhamma_The-cycle-of-Birth-and-Death.pdf"
     },
     {
       "id": "dhamma_ThePerfectionsDevelopedInDailyLife",
@@ -4173,7 +4211,8 @@
       "pdf_rel": "Dhamma_Books/ThePerfectionsDevelopedInDailyLife.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 22656
+      "total_words": 22656,
+      "pdf_file": "pdfs/dhamma_ThePerfectionsDevelopedInDailyLife.pdf"
     },
     {
       "id": "dhamma_Understanding-Realities-Now",
@@ -4183,7 +4222,8 @@
       "pdf_rel": "Dhamma_Books/Understanding-Realities-Now.pdf",
       "is_readable": true,
       "total_chapters": 17,
-      "total_words": 124400
+      "total_words": 124400,
+      "pdf_file": "pdfs/dhamma_Understanding-Realities-Now.pdf"
     },
     {
       "id": "dhamma_Understanding-Reality",
@@ -4193,7 +4233,8 @@
       "pdf_rel": "Dhamma_Books/Understanding-Reality.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 2909
+      "total_words": 2909,
+      "pdf_file": "pdfs/dhamma_Understanding-Reality.pdf"
     },
     {
       "id": "dhamma_What-is-most-precious",
@@ -4203,7 +4244,8 @@
       "pdf_rel": "Dhamma_Books/What-is-most-precious.pdf",
       "is_readable": true,
       "total_chapters": 7,
-      "total_words": 15817
+      "total_words": 15817,
+      "pdf_file": "pdfs/dhamma_What-is-most-precious.pdf"
     },
     {
       "id": "dhamma_alone_with_dhamma",
@@ -4213,7 +4255,8 @@
       "pdf_rel": "Dhamma_Books/alone_with_dhamma.pdf",
       "is_readable": true,
       "total_chapters": 9,
-      "total_words": 12027
+      "total_words": 12027,
+      "pdf_file": "pdfs/dhamma_alone_with_dhamma.pdf"
     },
     {
       "id": "dhamma_an-introduction-to-the-abhidhamma",
@@ -4223,7 +4266,8 @@
       "pdf_rel": "Dhamma_Books/an-introduction-to-the-abhidhamma.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 11807
+      "total_words": 11807,
+      "pdf_file": "pdfs/dhamma_an-introduction-to-the-abhidhamma.pdf"
     },
     {
       "id": "dhamma_dhamma-in-cambodia",
@@ -4233,7 +4277,8 @@
       "pdf_rel": "Dhamma_Books/dhamma-in-cambodia.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 39879
+      "total_words": 39879,
+      "pdf_file": "pdfs/dhamma_dhamma-in-cambodia.pdf"
     },
     {
       "id": "dhamma_dhamma-now-2",
@@ -4243,7 +4288,8 @@
       "pdf_rel": "Dhamma_Books/dhamma-now-2.pdf",
       "is_readable": true,
       "total_chapters": 6,
-      "total_words": 28682
+      "total_words": 28682,
+      "pdf_file": "pdfs/dhamma_dhamma-now-2.pdf"
     },
     {
       "id": "dhamma_learning-to-understand-life",
@@ -4253,7 +4299,8 @@
       "pdf_rel": "Dhamma_Books/learning-to-understand-life.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 13416
+      "total_words": 13416,
+      "pdf_file": "pdfs/dhamma_learning-to-understand-life.pdf"
     },
     {
       "id": "dhamma_letters-from-nina",
@@ -4263,7 +4310,8 @@
       "pdf_rel": "Dhamma_Books/letters-from-nina.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 26390
+      "total_words": 26390,
+      "pdf_file": "pdfs/dhamma_letters-from-nina.pdf"
     },
     {
       "id": "dhamma_letters-on-vipassana",
@@ -4273,7 +4321,8 @@
       "pdf_rel": "Dhamma_Books/letters-on-vipassana.pdf",
       "is_readable": true,
       "total_chapters": 8,
-      "total_words": 47293
+      "total_words": 47293,
+      "pdf_file": "pdfs/dhamma_letters-on-vipassana.pdf"
     },
     {
       "id": "dhamma_life-in-a-moment",
@@ -4283,7 +4332,8 @@
       "pdf_rel": "Dhamma_Books/life-in-a-moment.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 11545
+      "total_words": 11545,
+      "pdf_file": "pdfs/dhamma_life-in-a-moment.pdf"
     },
     {
       "id": "dhamma_listening-to-the-dhamma",
@@ -4293,7 +4343,8 @@
       "pdf_rel": "Dhamma_Books/listening-to-the-dhamma.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 18558
+      "total_words": 18558,
+      "pdf_file": "pdfs/dhamma_listening-to-the-dhamma.pdf"
     },
     {
       "id": "dhamma_metta-loving-kindness-in-buddhism",
@@ -4303,7 +4354,8 @@
       "pdf_rel": "Dhamma_Books/metta-loving-kindness-in-buddhism.pdf",
       "is_readable": true,
       "total_chapters": 8,
-      "total_words": 37523
+      "total_words": 37523,
+      "pdf_file": "pdfs/dhamma_metta-loving-kindness-in-buddhism.pdf"
     },
     {
       "id": "dhamma_october-29-2025a-path-without-ownership-STANDARD-PRINT-READY",
@@ -4313,7 +4365,8 @@
       "pdf_rel": "Dhamma_Books/october-29-2025a-path-without-ownership-STANDARD-PRINT-READY.pdf",
       "is_readable": true,
       "total_chapters": 9,
-      "total_words": 35753
+      "total_words": 35753,
+      "pdf_file": "pdfs/dhamma_october-29-2025a-path-without-ownership-STANDARD-PRINT-READY.pdf"
     },
     {
       "id": "dhamma_perseverance-in-dhamma",
@@ -4323,7 +4376,8 @@
       "pdf_rel": "Dhamma_Books/perseverance-in-dhamma.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 18229
+      "total_words": 18229,
+      "pdf_file": "pdfs/dhamma_perseverance-in-dhamma.pdf"
     },
     {
       "id": "dhamma_preserving-the-buddhas-teachings",
@@ -4333,7 +4387,8 @@
       "pdf_rel": "Dhamma_Books/preserving-the-buddhas-teachings.pdf",
       "is_readable": true,
       "total_chapters": 4,
-      "total_words": 28333
+      "total_words": 28333,
+      "pdf_file": "pdfs/dhamma_preserving-the-buddhas-teachings.pdf"
     },
     {
       "id": "dhamma_realities-and-concepts",
@@ -4343,7 +4398,8 @@
       "pdf_rel": "Dhamma_Books/realities-and-concepts.pdf",
       "is_readable": true,
       "total_chapters": 7,
-      "total_words": 14664
+      "total_words": 14664,
+      "pdf_file": "pdfs/dhamma_realities-and-concepts.pdf"
     },
     {
       "id": "dhamma_taking_refuge_in_buddhism",
@@ -4353,7 +4409,8 @@
       "pdf_rel": "Dhamma_Books/taking_refuge_in_buddhism.pdf",
       "is_readable": true,
       "total_chapters": 6,
-      "total_words": 28833
+      "total_words": 28833,
+      "pdf_file": "pdfs/dhamma_taking_refuge_in_buddhism.pdf"
     },
     {
       "id": "dhamma_the-world-in-the-buddhist-sense",
@@ -4363,7 +4420,8 @@
       "pdf_rel": "Dhamma_Books/the-world-in-the-buddhist-sense.pdf",
       "is_readable": true,
       "total_chapters": 8,
-      "total_words": 37118
+      "total_words": 37118,
+      "pdf_file": "pdfs/dhamma_the-world-in-the-buddhist-sense.pdf"
     },
     {
       "id": "dhamma_time-with-sujin",
@@ -4373,7 +4431,8 @@
       "pdf_rel": "Dhamma_Books/time-with-sujin.pdf",
       "is_readable": true,
       "total_chapters": 1,
-      "total_words": 6366
+      "total_words": 6366,
+      "pdf_file": "pdfs/dhamma_time-with-sujin.pdf"
     },
     {
       "id": "dhamma_understanding-life-now",
@@ -4383,7 +4442,8 @@
       "pdf_rel": "Dhamma_Books/understanding-life-now.pdf",
       "is_readable": true,
       "total_chapters": 20,
-      "total_words": 140024
+      "total_words": 140024,
+      "pdf_file": "pdfs/dhamma_understanding-life-now.pdf"
     }
   ],
   "children_books": [
@@ -4395,7 +4455,8 @@
       "pdf_rel": "Children_Books/abhidhamma.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 29786
+      "total_words": 29786,
+      "pdf_file": "pdfs/child_abhidhamma.pdf"
     },
     {
       "id": "child_journey",
@@ -4405,7 +4466,8 @@
       "pdf_rel": "Children_Books/journey.pdf",
       "is_readable": true,
       "total_chapters": 6,
-      "total_words": 26797
+      "total_words": 26797,
+      "pdf_file": "pdfs/child_journey.pdf"
     },
     {
       "id": "child_ten-perfections-little",
@@ -4415,7 +4477,8 @@
       "pdf_rel": "Children_Books/ten-perfections-little.pdf",
       "is_readable": true,
       "total_chapters": 3,
-      "total_words": 10766
+      "total_words": 10766,
+      "pdf_file": "pdfs/child_ten-perfections-little.pdf"
     },
     {
       "id": "child_ten-perfections",
@@ -4425,7 +4488,8 @@
       "pdf_rel": "Children_Books/ten-perfections.pdf",
       "is_readable": true,
       "total_chapters": 5,
-      "total_words": 24889
+      "total_words": 24889,
+      "pdf_file": "pdfs/child_ten-perfections.pdf"
     }
   ],
   "total_library_books": 64
