@@ -513,24 +513,12 @@ a:hover {
 }
 
 .library-item-card {
-  padding: 12px;
+  padding: 10px 12px;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   display: block;
-  cursor: pointer;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.library-item-card:hover {
-  border-color: var(--accent-color);
-  transform: translateY(-1px);
-}
-
-.library-item-card.active {
-  border-color: var(--accent-color);
-  background-color: var(--accent-soft);
 }
 
 .library-item-title {
@@ -615,7 +603,7 @@ a:hover {
 }
 
 /* Reader Body Typography */
-.chapter-body {
+.chapter-body, .chapter-sheets {
   font-family: var(--reader-font-family);
   font-size: var(--reader-font-size);
   line-height: var(--reader-line-height);
@@ -623,43 +611,249 @@ a:hover {
   text-align: var(--reader-text-align);
   hyphens: auto;
   -webkit-hyphens: auto;
-}
-
-.book-page {
-  position: relative;
-  margin-bottom: 32px;
-}
-
-.page-marker {
   display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ==========================================================================
+   Structured Book Page Sheets (Physical Manuscript Rhythm)
+   ========================================================================== */
+
+.book-page-sheet {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 34px 38px 28px;
+  min-height: 540px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+@media (max-width: 640px) {
+  .book-page-sheet {
+    padding: 22px 18px 20px;
+    min-height: 440px;
+    border-radius: var(--radius-md);
+    gap: 20px;
+  }
+}
+
+.book-page-sheet:hover {
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.07);
+  border-color: var(--border-focus);
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin: 28px 0 20px;
+  font-size: 0.72rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 22px;
   user-select: none;
 }
 
-.page-marker::before, .page-marker::after {
-  content: "";
+.sheet-header-book {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.sheet-header-chap {
+  font-weight: 500;
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheet-header-num {
+  font-weight: 700;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.sheet-content {
   flex: 1;
-  height: 1px;
-  background-color: var(--border-color);
 }
 
-.page-badge {
+.sheet-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+  user-select: none;
+}
+
+.sheet-footer-page {
   font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--page-marker-text);
-  background-color: var(--page-marker-bg);
-  padding: 3px 10px;
+  color: var(--text-muted);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 3px 12px;
   border-radius: 12px;
-  margin: 0 12px;
 }
 
-body.hide-page-markers .page-marker {
-  display: none;
+.empty-page-note {
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  margin: auto 0;
+  padding: 30px 10px;
+}
+
+/* ==========================================================================
+   Page Number Slider & Scrubber Bar
+   ========================================================================== */
+
+.page-slider-bar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 80;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: background-color var(--transition-normal);
+}
+
+.slider-controls-group {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 540px;
+  gap: 10px;
+}
+
+.page-slider-input {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--progress-track);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.page-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s ease;
+}
+
+.page-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-step-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background-color var(--transition-fast);
+}
+
+.slider-step-btn:hover {
+  background-color: var(--bg-hover);
+}
+
+.page-display-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+}
+
+.page-current-num {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.page-jump-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jump-input {
+  width: 58px;
+  height: 28px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.jump-input:focus {
+  border-color: var(--accent-color);
+}
+
+.jump-btn {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+  transition: opacity var(--transition-fast);
+}
+
+.jump-btn:hover {
+  opacity: 0.88;
+}
+
+@media (max-width: 768px) {
+  .page-jump-box {
+    display: none;
+  }
 }
 
 .reader-heading {

@@ -41,6 +41,16 @@
     btnNextChapter: document.getElementById('btn-next-chapter'),
     btnQuickPrev: document.getElementById('btn-quick-prev'),
     btnQuickNext: document.getElementById('btn-quick-next'),
+
+    // Page Slider & Scrubber
+    pageSliderBar: document.getElementById('page-slider-bar'),
+    pageSliderRange: document.getElementById('page-slider-range'),
+    currentPageDisplay: document.getElementById('current-page-display'),
+    totalPagesDisplay: document.getElementById('total-pages-display'),
+    btnPageStepPrev: document.getElementById('btn-page-step-prev'),
+    btnPageStepNext: document.getElementById('btn-page-step-next'),
+    inputJumpPage: document.getElementById('input-jump-page'),
+    btnJumpGo: document.getElementById('btn-jump-go'),
     
     // Drawer
     navDrawer: document.getElementById('nav-drawer'),
@@ -238,6 +248,16 @@
       el.headerBookTitle.textContent = STATE.activeManifest.title;
       document.title = `${STATE.activeManifest.title} · Abhidhamma Reader`;
       
+      // Update page slider limits
+      if (el.pageSliderRange && STATE.activeManifest.total_pages) {
+        el.pageSliderRange.min = '1';
+        el.pageSliderRange.max = String(STATE.activeManifest.total_pages);
+        el.totalPagesDisplay.textContent = String(STATE.activeManifest.total_pages);
+        if (el.inputJumpPage) {
+          el.inputJumpPage.max = String(STATE.activeManifest.total_pages);
+        }
+      }
+      
       // Highlight active book in drawer
       document.querySelectorAll('.book-nav-item').forEach(item => {
         item.classList.toggle('active', item.dataset.bookId === bookId);
@@ -342,20 +362,97 @@
     }
   }
 
-  // --- Reading Progress Tracker ---
+  // --- Reading Progress & Visible Page Tracker ---
   function updateReadingProgress() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight <= 0) {
       el.progressBar.style.width = '100%';
       el.progressPill.textContent = '100%';
+    } else {
+      const scrolled = Math.max(0, Math.min(window.scrollY, docHeight));
+      const percent = Math.round((scrolled / docHeight) * 100);
+      el.progressBar.style.width = `${percent}%`;
+      el.progressPill.textContent = `${percent}%`;
+    }
+
+    // Determine currently visible page sheet
+    const sheets = el.contentArea.querySelectorAll('.book-page-sheet');
+    if (sheets.length > 0) {
+      const viewLine = window.innerHeight * 0.35;
+      let visiblePage = null;
+      for (const sheet of sheets) {
+        const rect = sheet.getBoundingClientRect();
+        if (rect.top <= viewLine && rect.bottom >= viewLine) {
+          visiblePage = sheet.dataset.page;
+          break;
+        }
+      }
+      if (!visiblePage) {
+        // Fallback: sheet nearest to viewLine
+        let closestDist = Infinity;
+        for (const sheet of sheets) {
+          const rect = sheet.getBoundingClientRect();
+          const dist = Math.abs(rect.top - viewLine);
+          if (dist < closestDist) {
+            closestDist = dist;
+            visiblePage = sheet.dataset.page;
+          }
+        }
+      }
+      if (visiblePage) {
+        if (el.currentPageDisplay) el.currentPageDisplay.textContent = visiblePage;
+        if (el.pageSliderRange && document.activeElement !== el.pageSliderRange) {
+          el.pageSliderRange.value = visiblePage;
+        }
+      }
+    }
+  }
+
+  // --- Page Navigation & Scrubber ---
+  async function jumpToPage(targetPage) {
+    if (!STATE.activeManifest) return;
+    targetPage = parseInt(targetPage, 10);
+    if (isNaN(targetPage) || targetPage < 1 || targetPage > STATE.activeManifest.total_pages) {
       return;
     }
     
-    const scrolled = Math.max(0, Math.min(window.scrollY, docHeight));
-    const percent = Math.round((scrolled / docHeight) * 100);
+    // Update displays
+    if (el.currentPageDisplay) el.currentPageDisplay.textContent = targetPage;
+    if (el.pageSliderRange) el.pageSliderRange.value = targetPage;
     
-    el.progressBar.style.width = `${percent}%`;
-    el.progressPill.textContent = `${percent}%`;
+    // Check if targetPage is in current chapter
+    const currentChapter = STATE.activeManifest.chapters.find(c => c.id === STATE.activeChapterId);
+    if (currentChapter && targetPage >= currentChapter.start_page && targetPage <= currentChapter.end_page) {
+      const sheet = document.getElementById('page-' + targetPage);
+      if (sheet) {
+        sheet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        highlightPageSheet(sheet);
+        return;
+      }
+    }
+    
+    // If targetPage is in another chapter: find that chapter and load it
+    const targetChapter = STATE.activeManifest.chapters.find(c => targetPage >= c.start_page && targetPage <= c.end_page);
+    if (targetChapter) {
+      await loadChapter(targetChapter.id, 0);
+      setTimeout(() => {
+        const sheet = document.getElementById('page-' + targetPage);
+        if (sheet) {
+          sheet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          highlightPageSheet(sheet);
+        }
+      }, 120);
+    }
+  }
+
+  function highlightPageSheet(sheet) {
+    sheet.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+    sheet.style.borderColor = 'var(--accent-color)';
+    sheet.style.boxShadow = '0 0 0 3px var(--accent-soft)';
+    setTimeout(() => {
+      sheet.style.borderColor = '';
+      sheet.style.boxShadow = '';
+    }, 1800);
   }
 
   // --- Drawer Rendering ---
@@ -437,52 +534,21 @@
       
       items.forEach(item => {
         const card = document.createElement('div');
-        const isActive = (item.id === STATE.activeBookId);
-        card.className = `library-item-card ${isActive ? 'active' : ''}`;
-        card.dataset.bookId = item.id;
-        
+        card.className = 'library-item-card';
         card.innerHTML = `
           <div class="library-item-title">${item.title}</div>
           ${item.subtitle ? `<div class="library-item-desc">${item.subtitle}</div>` : ''}
           ${item.author ? `<div class="library-item-desc">${item.author}</div>` : ''}
-          <div class="library-item-desc" style="color: var(--text-muted); font-size: 0.72rem; margin-top: 4px;">
-            ${item.total_chapters || '—'} chapters · ${item.pages} pages
-          </div>
-          <div style="display: flex; gap: 8px; margin-top: 8px; align-items: center;">
-            <button class="read-html-btn" data-book-id="${item.id}" style="
-              display: inline-flex;
-              align-items: center;
-              gap: 4px;
-              font-size: 0.76rem;
-              font-weight: 600;
-              padding: 4px 10px;
-              border-radius: var(--radius-sm);
-              background-color: var(--accent-color);
-              color: var(--accent-contrast);
-              cursor: pointer;
-            ">
-              📖 Read HTML
-            </button>
-            <a class="library-item-link" href="../${item.pdf_rel}" target="_blank" rel="noopener" style="margin-top: 0; font-size: 0.74rem;">
-              PDF ↗
-            </a>
-          </div>
+          <div class="library-item-desc" style="color: var(--text-muted);">${item.pages} pages</div>
+          <a class="library-item-link" href="../${item.pdf_rel}" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Open Original PDF
+          </a>
         `;
-        
-        // Clicking anywhere on card or Read HTML button opens reader
-        card.querySelector('.read-html-btn').addEventListener('click', (e) => {
-          e.stopPropagation();
-          selectBook(item.id);
-          switchDrawerTab('tab-active-toc');
-          closeDrawer();
-        });
-        
-        card.addEventListener('click', () => {
-          selectBook(item.id);
-          switchDrawerTab('tab-active-toc');
-          closeDrawer();
-        });
-        
         container.appendChild(card);
       });
     });
@@ -748,6 +814,43 @@
       }, 250);
     });
     
+    // Page Slider Scrubber & Stepper
+    if (el.pageSliderRange) {
+      el.pageSliderRange.addEventListener('input', (e) => {
+        jumpToPage(e.target.value);
+      });
+    }
+    
+    if (el.btnPageStepPrev) {
+      el.btnPageStepPrev.addEventListener('click', () => {
+        const cur = parseInt(el.pageSliderRange.value, 10) || 1;
+        jumpToPage(cur - 1);
+      });
+    }
+    
+    if (el.btnPageStepNext) {
+      el.btnPageStepNext.addEventListener('click', () => {
+        const cur = parseInt(el.pageSliderRange.value, 10) || 1;
+        jumpToPage(cur + 1);
+      });
+    }
+    
+    if (el.btnJumpGo) {
+      el.btnJumpGo.addEventListener('click', () => {
+        if (el.inputJumpPage && el.inputJumpPage.value) {
+          jumpToPage(el.inputJumpPage.value);
+        }
+      });
+    }
+    
+    if (el.inputJumpPage) {
+      el.inputJumpPage.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && el.inputJumpPage.value) {
+          jumpToPage(el.inputJumpPage.value);
+        }
+      });
+    }
+
     // Scroll tracking
     let scrollThrottle = false;
     window.addEventListener('scroll', () => {

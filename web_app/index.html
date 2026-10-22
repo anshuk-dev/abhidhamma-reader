@@ -61,6 +61,27 @@
     </div>
   </header>
 
+  <!-- Top Page Slider & Scrubber Bar -->
+  <div class="page-slider-bar" id="page-slider-bar">
+    <div class="slider-controls-group">
+      <button id="btn-page-step-prev" class="slider-step-btn" aria-label="Previous Page" title="Previous Page">‹</button>
+      <input type="range" id="page-slider-range" class="page-slider-input" min="1" max="100" value="1" aria-label="Page Slider">
+      <button id="btn-page-step-next" class="slider-step-btn" aria-label="Next Page" title="Next Page">›</button>
+    </div>
+
+    <div class="page-display-badge">
+      <span>Page</span>
+      <span id="current-page-display" class="page-current-num">1</span>
+      <span>of</span>
+      <span id="total-pages-display">100</span>
+    </div>
+
+    <div class="page-jump-box">
+      <input type="number" id="input-jump-page" class="jump-input" placeholder="Page" min="1">
+      <button id="btn-jump-go" class="jump-btn">Go</button>
+    </div>
+  </div>
+
   <!-- Navigation Drawer (Side panel) -->
   <div id="drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
   <aside id="nav-drawer" class="nav-drawer" aria-label="Library Navigation">
