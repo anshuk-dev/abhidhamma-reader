@@ -1,11 +1,20 @@
 # ☸️ Abhidhamma Reader (Web & Mobile HTML Reader)
 
-A minimalist, high-performance, distraction-free HTML reader for the ancient Theravada Buddhist texts, starting with **all Seven Books of the Abhidhamma Piṭaka** (all 8 canonical volumes: 4,839 pages, 1,428,677 words) and cataloging the entire 64-book library.
+A minimalist, high-performance, distraction-free HTML reader for ancient Theravada Buddhist texts, starting with **all Seven Books of the Abhidhamma Piṭaka** (all 8 canonical volumes: 4,839 pages, 1,428,677 words) and cataloging the entire 64-book library.
 
 ---
 
-## 🚀 Quick Start
+## 🔗 Reading Links & How to Read
 
+### Option 1: Read Online via GitHub Codespaces (1-Click Private Cloud URL)
+Since this repository is private, you can read it in the cloud from your mobile phone or browser without installing anything:
+1. Click here: **[Open GitHub Codespaces](https://github.com/anshuk-dev/abhidhamma-reader/codespaces)**
+2. Click **New codespace** on `main`.
+3. It will automatically forward port `8088` and give you a private HTTPS web link to read with all interactive visual themes and controls.
+
+---
+
+### Option 2: Read Locally on your Mac / Computer
 Run the reader locally with one command:
 
 ```bash
@@ -14,7 +23,16 @@ Run the reader locally with one command:
 python3 server.py
 ```
 
-This will automatically launch the web server and open the reader in your default browser at **`http://localhost:8088`**.
+This will automatically launch the server and open your browser at **`http://localhost:8088`**.
+
+---
+
+### Option 3: Deploy to Free Cloudflare Pages / Vercel (For 24/7 Mobile Reading)
+If you want a permanent link like `https://abhidhamma.pages.dev` on your phone without running anything locally:
+1. Log in to [Cloudflare Pages](https://pages.cloudflare.com/) or [Vercel](https://vercel.com/) (both are 100% free).
+2. Connect your GitHub account (`anshuk-dev`).
+3. Select this private repository `abhidhamma-reader`, set the Root directory to `web_app`, and click **Deploy**.
+4. You will get a permanent private/public URL to read anytime anywhere.
 
 ---
 
