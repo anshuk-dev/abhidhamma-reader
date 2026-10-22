@@ -1477,9 +1477,147 @@ mark {
   }
 }
 
+/* Double-buffered Slide Page Turn Leaf for PDF */
+.pdf-slide-leaf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+  border-radius: 4px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+.pdf-slide-leaf canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pdf-slide-leaf.slide-next {
+  animation: pdfLeafSlideNext 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pdfLeafSlideNext {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.pdf-slide-leaf.slide-prev {
+  animation: pdfLeafSlidePrev 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pdfLeafSlidePrev {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Incoming Canvas Slide Animations */
+.pdf-canvas-enter-next {
+  animation: pdfCanvasEnterNext 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pdfCanvasEnterNext {
+  0% {
+    transform: translateX(45px);
+    opacity: 0.82;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.pdf-canvas-enter-prev {
+  animation: pdfCanvasEnterPrev 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pdfCanvasEnterPrev {
+  0% {
+    transform: translateX(-45px);
+    opacity: 0.82;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 [data-theme="obsidian"] .pdf-page-wrapper {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
   filter: brightness(0.92) contrast(1.05);
+}
+
+/* ==========================================================================
+   PDF Visual Tone & Contrast Filters
+   ========================================================================== */
+
+[data-pdf-filter="authentic"] #pdf-main-canvas,
+[data-pdf-filter="authentic"] .pdf-flip-leaf canvas,
+[data-pdf-filter="authentic"] .pdf-slide-leaf canvas {
+  filter: none;
+}
+
+[data-pdf-filter="sepia"] #pdf-main-canvas,
+[data-pdf-filter="sepia"] .pdf-flip-leaf canvas,
+[data-pdf-filter="sepia"] .pdf-slide-leaf canvas {
+  filter: sepia(0.36) contrast(1.08) brightness(0.96);
+}
+
+[data-pdf-filter="dark"] #pdf-main-canvas,
+[data-pdf-filter="dark"] .pdf-flip-leaf canvas,
+[data-pdf-filter="dark"] .pdf-slide-leaf canvas {
+  filter: invert(0.92) hue-rotate(180deg) contrast(1.22) brightness(0.92);
+}
+
+[data-pdf-filter="dark"] .pdf-page-wrapper {
+  background-color: #121212 !important;
+  border-color: #2b2b2b !important;
+}
+
+[data-pdf-filter="mono"] #pdf-main-canvas,
+[data-pdf-filter="mono"] .pdf-flip-leaf canvas,
+[data-pdf-filter="mono"] .pdf-slide-leaf canvas {
+  filter: grayscale(1) contrast(1.3) brightness(1.02);
+}
+
+/* ==========================================================================
+   Page Elevation & Shadow Modes (Physical Book Depth vs Flat Minimalist)
+   ========================================================================== */
+
+[data-shadow="flat"] .book-page-sheet {
+  box-shadow: none !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-shadow="flat"] .book-page-sheet::before,
+[data-shadow="flat"] .book-page-sheet::after {
+  display: none !important;
+}
+
+[data-shadow="flat"] .pdf-page-wrapper {
+  box-shadow: none !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-shadow="flat"] .pdf-page-wrapper::before,
+[data-shadow="flat"] .pdf-page-wrapper::after {
+  display: none !important;
 }
 
 #pdf-main-canvas {
@@ -1728,7 +1866,8 @@ mark {
     left: auto;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    width: 380px;
+    width: 440px;
+    max-height: 88vh;
     transform: translateY(-10px) scale(0.96);
     opacity: 0;
     pointer-events: none;
@@ -1877,6 +2016,84 @@ mark {
   color: var(--text-primary);
 }
 
+/* Expanded 7-Font Grid */
+.font-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 4px;
+}
+
+@media (max-width: 440px) {
+  .font-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.font-grid .btn-group-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8px 10px;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.font-grid .font-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.font-grid .font-sample {
+  font-size: 0.68rem;
+  opacity: 0.72;
+  margin-top: 2px;
+  color: var(--text-secondary);
+}
+
+.font-grid .btn-group-item.active {
+  background-color: var(--bg-surface);
+  border-color: var(--border-focus);
+  color: var(--accent-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.font-grid .btn-group-item.active .font-name {
+  color: var(--accent-color);
+}
+
+.btn-pill {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-pill:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.setting-subtext {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Toggle Switches */
 .toggle-row {
   display: flex;
@@ -1889,6 +2106,76 @@ mark {
   font-size: 0.88rem;
   color: var(--text-primary);
   font-weight: 500;
+}
+
+/* ==========================================================================
+   Zen / Focus Mode (Distraction-Free)
+   ========================================================================== */
+
+body.zen-mode .app-header {
+  transform: translateY(-100%) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+}
+
+body.zen-mode .page-slider-bar {
+  transform: translateY(-100%) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+}
+
+body.zen-mode .bottom-bar {
+  transform: translateY(100%) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+}
+
+body.zen-mode .app-main {
+  padding-top: 14px !important;
+  padding-bottom: 24px !important;
+  min-height: 100vh;
+}
+
+body.zen-mode .pdf-viewer-section {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+/* Floating Exit Zen Pill */
+.zen-exit-pill {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 120;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+  opacity: 0.45;
+  transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+body.zen-mode .zen-exit-pill {
+  display: inline-flex;
+}
+
+.zen-exit-pill:hover {
+  opacity: 1;
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================

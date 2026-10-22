@@ -85,6 +85,10 @@
       theme: 'paper',
       fontFamily: 'gentium',
       pageAnimation: 'fold', // 'fold' | 'slide' | 'none'
+      pdfFilter: 'authentic', // 'authentic' | 'sepia' | 'dark' | 'mono'
+      shadowMode: 'physical', // 'physical' | 'flat'
+      zenMode: false,
+      autoScrollSpeed: 0,
       fontSize: 19,
       lineHeight: 1.8,
       width: '760px',
@@ -183,6 +187,12 @@
     themeSelector: document.getElementById('theme-selector'),
     fontFamilyGroup: document.getElementById('font-family-group'),
     animationGroup: document.getElementById('animation-group'),
+    pdfFilterGroup: document.getElementById('pdf-filter-group'),
+    shadowModeGroup: document.getElementById('shadow-mode-group'),
+    autoscrollGroup: document.getElementById('autoscroll-group'),
+    btnToggleZen: document.getElementById('btn-toggle-zen'),
+    btnExitZen: document.getElementById('btn-exit-zen'),
+    btnZenModeToggle: document.getElementById('btn-zen-mode-toggle'),
     fontSizeDisplay: document.getElementById('font-size-display'),
     btnFontDecrease: document.getElementById('btn-font-decrease'),
     btnFontIncrease: document.getElementById('btn-font-increase'),
@@ -231,6 +241,18 @@
       }
       if (!STATE.settings.pageAnimation) {
         STATE.settings.pageAnimation = 'fold';
+      }
+      if (!STATE.settings.pdfFilter) {
+        STATE.settings.pdfFilter = 'authentic';
+      }
+      if (!STATE.settings.shadowMode) {
+        STATE.settings.shadowMode = 'physical';
+      }
+      if (STATE.settings.zenMode === undefined) {
+        STATE.settings.zenMode = false;
+      }
+      if (!STATE.settings.autoScrollSpeed) {
+        STATE.settings.autoScrollSpeed = 0;
       }
       if (STATE.settings.fontFamily === 'serif') {
         STATE.settings.fontFamily = 'gentium';
@@ -327,15 +349,34 @@
     
     // Theme
     el.html.setAttribute('data-theme', s.theme);
+
+    // PDF Tone Filter
+    el.html.setAttribute('data-pdf-filter', s.pdfFilter || 'authentic');
+
+    // Page Elevation & Shadow Mode
+    el.html.setAttribute('data-shadow', s.shadowMode || 'physical');
+
+    // Zen Focus Mode
+    if (s.zenMode) {
+      document.body.classList.add('zen-mode');
+    } else {
+      document.body.classList.remove('zen-mode');
+    }
     
     // Typography Font Family (complete Pali diacritical coverage: ā, ī, ū, ṭ, ḍ, ṇ, ḷ, ṃ, ṁ, ṅ, ñ)
-    let fontCss = "'Gentium Book Plus', 'Crimson Pro', Georgia, serif";
+    let fontCss = "'Gentium Book Plus', Georgia, serif";
     if (s.fontFamily === 'crimson') {
-      fontCss = "'Crimson Pro', 'Gentium Book Plus', Georgia, serif";
+      fontCss = "'Crimson Pro', Georgia, serif";
+    } else if (s.fontFamily === 'literata') {
+      fontCss = "'Literata', Georgia, serif";
+    } else if (s.fontFamily === 'garamond') {
+      fontCss = "'EB Garamond', Georgia, serif";
+    } else if (s.fontFamily === 'sourceserif') {
+      fontCss = "'Source Serif 4', Georgia, serif";
     } else if (s.fontFamily === 'sans') {
-      fontCss = "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif";
+      fontCss = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
     } else if (s.fontFamily === 'mono') {
-      fontCss = "'SF Mono', Menlo, Consolas, Monaco, monospace";
+      fontCss = "'JetBrains Mono', 'SF Mono', Menlo, Consolas, Monaco, monospace";
     }
     el.html.style.setProperty('--reader-font-family', fontCss);
     
@@ -361,6 +402,9 @@
       el.body.classList.add('hide-page-markers');
     }
     
+    // Update auto-scroll
+    updateAutoScrollState();
+
     updateSettingsUI();
   }
 
@@ -381,6 +425,26 @@
     document.querySelectorAll('#animation-group .btn-group-item').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.anim === (s.pageAnimation || 'fold'));
     });
+
+    // PDF Filter buttons
+    document.querySelectorAll('#pdf-filter-group .btn-group-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.filter === (s.pdfFilter || 'authentic'));
+    });
+
+    // Shadow Mode buttons
+    document.querySelectorAll('#shadow-mode-group .btn-group-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.shadow === (s.shadowMode || 'physical'));
+    });
+
+    // Auto-Scroll buttons
+    document.querySelectorAll('#autoscroll-group .btn-group-item').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.speed, 10) === (s.autoScrollSpeed || 0));
+    });
+
+    // Zen Mode button text
+    if (el.btnZenModeToggle) {
+      el.btnZenModeToggle.textContent = s.zenMode ? 'Exit Zen' : 'Enter Zen';
+    }
     
     // Line height buttons
     document.querySelectorAll('#line-height-group .btn-group-item').forEach(btn => {
@@ -401,6 +465,74 @@
     document.querySelectorAll('#markers-group .btn-group-item').forEach(btn => {
       btn.classList.toggle('active', (btn.dataset.markers === 'show') === s.showMarkers);
     });
+  }
+
+  // --- Zen Focus Mode ---
+  function toggleZenMode() {
+    STATE.settings.zenMode = !STATE.settings.zenMode;
+    saveSettings();
+    applySettings();
+    if (STATE.settings.zenMode) {
+      showReaderToast('Zen Focus Mode ON (Press Z or Esc to exit)');
+    } else {
+      showReaderToast('Exited Zen Mode');
+    }
+  }
+
+  // --- Hands-free Auto-Scroll ---
+  let autoScrollRaf = null;
+  let autoScrollLastTime = null;
+  let autoScrollUserPausedUntil = 0;
+
+  function updateAutoScrollState() {
+    if (autoScrollRaf) {
+      cancelAnimationFrame(autoScrollRaf);
+      autoScrollRaf = null;
+    }
+    const speed = STATE.settings.autoScrollSpeed || 0;
+    if (speed <= 0) return;
+
+    autoScrollLastTime = performance.now();
+
+    function step(now) {
+      if (STATE.settings.autoScrollSpeed <= 0) return;
+      const dt = (now - autoScrollLastTime) / 1000;
+      autoScrollLastTime = now;
+
+      if (now > autoScrollUserPausedUntil && dt > 0 && dt < 0.1) {
+        const delta = STATE.settings.autoScrollSpeed * dt;
+        if (STATE.viewMode === 'pdf') {
+          if (el.pdfCanvasContainer) {
+            el.pdfCanvasContainer.scrollTop += delta;
+            if (el.pdfCanvasContainer.scrollTop + el.pdfCanvasContainer.clientHeight >= el.pdfCanvasContainer.scrollHeight - 5) {
+              if (STATE.pdf.page < STATE.pdf.totalPages) {
+                jumpToPage(STATE.pdf.page + 1, 'next');
+                el.pdfCanvasContainer.scrollTop = 0;
+                autoScrollUserPausedUntil = performance.now() + 1800;
+              }
+            }
+          }
+        } else {
+          window.scrollBy(0, delta);
+        }
+      }
+
+      autoScrollRaf = requestAnimationFrame(step);
+    }
+
+    autoScrollRaf = requestAnimationFrame(step);
+  }
+
+  function toggleAutoScroll() {
+    if (STATE.settings.autoScrollSpeed > 0) {
+      STATE.settings.autoScrollSpeed = 0;
+      showReaderToast('Auto-scroll Stopped');
+    } else {
+      STATE.settings.autoScrollSpeed = 25; // Gentle pace
+      showReaderToast('Auto-scroll Started (Slow)');
+    }
+    saveSettings();
+    applySettings();
   }
 
   // --- Reading Mode Management (Text, PDF, Dual Split) ---
@@ -629,8 +761,10 @@
       direction = pageNum > prevPdfPage ? 'next' : 'prev';
     }
 
-    // Double-buffered 3D Page Turn Animation
-    if (direction && el.pdfMainCanvas && el.pdfPageWrapper && el.pdfMainCanvas.width > 0 && STATE.settings.pageAnimation !== 'none') {
+    const animMode = STATE.settings.pageAnimation || 'fold';
+
+    // Double-buffered Page Turn Animation (Paper Fold or Horizontal Slide)
+    if (direction && el.pdfMainCanvas && el.pdfPageWrapper && el.pdfMainCanvas.width > 0 && animMode !== 'none') {
       try {
         createPdfFlipLeaf(el.pdfMainCanvas, el.pdfPageWrapper, direction);
       } catch (e) {
@@ -715,6 +849,17 @@
       saveLastPosition();
       savePdfPosition(STATE.activeBookId, pageNum);
 
+      // Apply entrance animation for Slide mode
+      if (direction && (STATE.settings.pageAnimation === 'slide') && canvas) {
+        const enterClass = direction === 'next' ? 'pdf-canvas-enter-next' : 'pdf-canvas-enter-prev';
+        canvas.classList.remove('pdf-canvas-enter-next', 'pdf-canvas-enter-prev');
+        void canvas.offsetWidth;
+        canvas.classList.add(enterClass);
+        setTimeout(() => {
+          if (canvas) canvas.classList.remove(enterClass);
+        }, 380);
+      }
+
       // Preload adjacent pages in memory for 0ms turns
       preloadAdjacentPdfPages(pageNum);
 
@@ -734,11 +879,17 @@
 
   function createPdfFlipLeaf(sourceCanvas, wrapper, direction) {
     if (!sourceCanvas || !wrapper || sourceCanvas.width === 0) return;
+    const animMode = STATE.settings.pageAnimation || 'fold';
+    if (animMode === 'none') return;
 
-    wrapper.querySelectorAll('.pdf-flip-leaf').forEach(l => l.remove());
+    wrapper.querySelectorAll('.pdf-flip-leaf, .pdf-slide-leaf').forEach(l => l.remove());
 
     const leaf = document.createElement('div');
-    leaf.className = `pdf-flip-leaf ${direction === 'next' ? 'flip-next' : 'flip-prev'}`;
+    if (animMode === 'slide') {
+      leaf.className = `pdf-slide-leaf ${direction === 'next' ? 'slide-next' : 'slide-prev'}`;
+    } else {
+      leaf.className = `pdf-flip-leaf ${direction === 'next' ? 'flip-next' : 'flip-prev'}`;
+    }
 
     const leafCanvas = document.createElement('canvas');
     leafCanvas.width = sourceCanvas.width;
@@ -752,9 +903,10 @@
     leaf.appendChild(leafCanvas);
     wrapper.appendChild(leaf);
 
+    const duration = animMode === 'slide' ? 380 : 480;
     setTimeout(() => {
       leaf.remove();
-    }, 480);
+    }, duration);
   }
 
   function preloadAdjacentPdfPages(currentPage) {
@@ -1749,6 +1901,58 @@
       saveSettings();
       applySettings();
     });
+
+    // PDF Visual Tone Filter
+    if (el.pdfFilterGroup) {
+      el.pdfFilterGroup.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-group-item');
+        if (!btn) return;
+        STATE.settings.pdfFilter = btn.dataset.filter;
+        saveSettings();
+        applySettings();
+        showReaderToast(`PDF Tone: ${btn.textContent.trim()}`);
+      });
+    }
+
+    // Page Elevation & Shadow Mode
+    if (el.shadowModeGroup) {
+      el.shadowModeGroup.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-group-item');
+        if (!btn) return;
+        STATE.settings.shadowMode = btn.dataset.shadow;
+        saveSettings();
+        applySettings();
+        showReaderToast(`Page Style: ${btn.textContent.trim()}`);
+      });
+    }
+
+    // Auto-Scroll Pace
+    if (el.autoscrollGroup) {
+      el.autoscrollGroup.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-group-item');
+        if (!btn) return;
+        const spd = parseInt(btn.dataset.speed, 10) || 0;
+        STATE.settings.autoScrollSpeed = spd;
+        saveSettings();
+        applySettings();
+        if (spd > 0) {
+          showReaderToast(`Auto-scroll: ${btn.textContent.trim()} (Press A to toggle)`);
+        } else {
+          showReaderToast('Auto-scroll Stopped');
+        }
+      });
+    }
+
+    // Zen Focus Mode Triggers
+    if (el.btnToggleZen) {
+      el.btnToggleZen.addEventListener('click', toggleZenMode);
+    }
+    if (el.btnZenModeToggle) {
+      el.btnZenModeToggle.addEventListener('click', toggleZenMode);
+    }
+    if (el.btnExitZen) {
+      el.btnExitZen.addEventListener('click', toggleZenMode);
+    }
     
     // Search Modal
     el.btnOpenSearch.addEventListener('click', openSearch);
@@ -1824,6 +2028,14 @@
         });
         scrollThrottle = true;
       }
+    }, { passive: true });
+    
+    // User interaction pauses auto-scroll temporarily
+    window.addEventListener('wheel', () => {
+      autoScrollUserPausedUntil = performance.now() + 2500;
+    }, { passive: true });
+    window.addEventListener('touchmove', () => {
+      autoScrollUserPausedUntil = performance.now() + 2500;
     }, { passive: true });
     
     // Touch Swipe & Gestures Setup
@@ -1926,15 +2138,25 @@
         case 't':
           cycleTheme();
           break;
-        case 'a':
         case 's':
           openSettings();
+          break;
+        case 'z':
+        case 'Z':
+          toggleZenMode();
+          break;
+        case 'a':
+        case 'A':
+          toggleAutoScroll();
           break;
         case 'p':
           // Quick shortcut to toggle PDF mode
           togglePdfModeMobile();
           break;
         case 'Escape':
+          if (STATE.settings.zenMode) {
+            toggleZenMode();
+          }
           closeDrawer();
           closeSettings();
           closeSearch();
