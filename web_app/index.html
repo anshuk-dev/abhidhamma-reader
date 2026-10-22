@@ -44,6 +44,22 @@
     </div>
 
     <div class="header-right">
+      <!-- 3-way Reading Mode Switcher -->
+      <div class="view-mode-toggle" id="view-mode-toggle" role="group" aria-label="Reading Mode">
+        <button class="mode-toggle-btn active" id="btn-mode-html" data-mode="html" title="HTML Text View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Text</span>
+        </button>
+        <button class="mode-toggle-btn" id="btn-mode-pdf" data-mode="pdf" title="Original PDF Facsimile">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>PDF</span>
+        </button>
+        <button class="mode-toggle-btn dual-only-desktop" id="btn-mode-split" data-mode="split" title="Split Dual View (Text + PDF)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+          <span>Dual</span>
+        </button>
+      </div>
+
       <button id="btn-open-search" class="icon-btn" aria-label="Search Book" title="Search text (/)">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
@@ -127,7 +143,7 @@
   </aside>
 
   <!-- Main Reader Canvas -->
-  <main class="app-main">
+  <main class="app-main" id="app-main">
     <article class="reader-viewport" id="reader-viewport">
       <div id="chapter-content-area">
         <div class="spinner"></div>
@@ -150,6 +166,63 @@
         </button>
       </footer>
     </article>
+
+    <!-- Embedded High-Performance PDF Reader Section -->
+    <section class="pdf-viewer-section" id="pdf-viewer-section" style="display: none;">
+      <!-- PDF Top Control Bar -->
+      <div class="pdf-toolbar" id="pdf-toolbar">
+        <div class="pdf-toolbar-group">
+          <button id="btn-pdf-zoom-out" class="pdf-tool-btn" title="Zoom Out (-)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          </button>
+          <span id="pdf-zoom-level-text" class="pdf-zoom-badge" title="Current Zoom Scale">100%</span>
+          <button id="btn-pdf-zoom-in" class="pdf-tool-btn" title="Zoom In (+)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          </button>
+        </div>
+
+        <div class="pdf-toolbar-group">
+          <button id="btn-pdf-fit-width" class="pdf-tool-btn with-text" title="Fit to Screen Width">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12H3M21 6H3M21 18H3"/></svg>
+            <span>Fit Width</span>
+          </button>
+          <button id="btn-pdf-fit-page" class="pdf-tool-btn with-text" title="Fit Entire Page in View">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>Fit Page</span>
+          </button>
+        </div>
+
+        <div class="pdf-toolbar-group pdf-nav-group">
+          <button id="btn-pdf-prev-page" class="pdf-tool-btn" title="Previous Page">‹</button>
+          <span class="pdf-page-indicator">
+            <input type="number" id="pdf-input-page" min="1" value="1" class="pdf-page-input" aria-label="PDF Page Number">
+            <span>/</span>
+            <span id="pdf-total-pages">1</span>
+          </span>
+          <button id="btn-pdf-next-page" class="pdf-tool-btn" title="Next Page">›</button>
+        </div>
+
+        <div class="pdf-toolbar-group pdf-actions-group">
+          <a id="btn-pdf-download" class="pdf-tool-btn" title="Download Original PDF" target="_blank" rel="noopener" download>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+          <button id="btn-pdf-close" class="pdf-tool-btn with-text" title="Switch back to HTML Text Reader">
+            <span>Back to Text</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- High-Resolution Canvas Container -->
+      <div class="pdf-canvas-container" id="pdf-canvas-container" tabindex="0" role="region" aria-label="PDF Viewer Canvas">
+        <div class="pdf-loading-overlay" id="pdf-loading-overlay">
+          <div class="spinner"></div>
+          <span class="pdf-loading-text" id="pdf-loading-text">Rendering authentic folio...</span>
+        </div>
+        <div class="pdf-page-wrapper" id="pdf-page-wrapper">
+          <canvas id="pdf-main-canvas"></canvas>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Bottom Mobile Toolbar -->
@@ -171,6 +244,16 @@
         <line x1="3" y1="18" x2="3.01" y2="18"></line>
       </svg>
       <span>Chapters</span>
+    </button>
+
+    <button id="btn-quick-pdf-toggle" class="bottom-action-btn" aria-label="Toggle PDF Mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+      </svg>
+      <span id="mobile-pdf-toggle-label">PDF</span>
     </button>
 
     <div class="progress-pill" id="reading-percentage-pill">0%</div>
@@ -324,6 +407,7 @@
     </div>
   </div>
 
+  <script src="vendor/pdf.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

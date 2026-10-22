@@ -289,6 +289,61 @@ a:hover {
 }
 
 /* ==========================================================================
+   View Mode Switcher (Text vs. PDF vs. Dual Split)
+   ========================================================================== */
+
+.view-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 3px;
+}
+
+.mode-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.mode-toggle-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+}
+
+.mode-toggle-btn.active {
+  color: var(--badge-text);
+  background-color: var(--accent-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 900px) {
+  .dual-only-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .mode-toggle-btn {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    gap: 4px;
+  }
+}
+
+/* ==========================================================================
    Navigation Drawer / Sidebar
    ========================================================================== */
 
@@ -888,6 +943,360 @@ mark {
   color: var(--mark-text);
   padding: 1px 3px;
   border-radius: 3px;
+}
+
+/* ==========================================================================
+   Structured Book Page Sheets: TOC, Mātikā, Analytical Pairs & Outlines
+   ========================================================================== */
+
+/* Table of Contents Rows & Perfect Leader Line Alignment */
+.toc-table-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 6px 0;
+  padding: 3px 0;
+  font-size: calc(var(--reader-font-size) * 0.94);
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
+.toc-row-title {
+  flex: 0 1 auto;
+  max-width: 82%;
+  word-break: break-word;
+}
+
+.toc-row-leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted var(--border-color);
+  margin: 0 8px;
+  min-width: 20px;
+  position: relative;
+  top: -4px;
+}
+
+.toc-row-page {
+  flex: 0 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: right;
+  min-width: 28px;
+}
+
+/* Mātikā Grids & Analytical Data Pairs */
+.matika-grid-row, .data-pair-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 7px 12px;
+  margin: 5px 0;
+  border-radius: var(--radius-sm);
+  background-color: rgba(0, 0, 0, 0.025);
+  border-left: 3px solid var(--accent-soft);
+  gap: 14px;
+  font-size: calc(var(--reader-font-size) * 0.95);
+}
+
+[data-theme="obsidian"] .matika-grid-row,
+[data-theme="obsidian"] .data-pair-row {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+.data-pair-key {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.data-pair-val {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: right;
+}
+
+/* Hierarchical Outlines */
+.outline-level-1 {
+  margin-left: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.outline-level-2 {
+  margin-left: 1.5rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.outline-level-3 {
+  margin-left: 3rem;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+
+.outline-num {
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-right: 6px;
+}
+
+.canonical-verse {
+  text-align: center;
+  font-style: italic;
+  margin: 1.5em 0;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   Embedded High-Performance PDF Viewer Section
+   ========================================================================== */
+
+.pdf-viewer-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  min-height: calc(100vh - var(--header-height) - 48px);
+  box-sizing: border-box;
+  animation: fadeIn 0.25s ease;
+}
+
+/* PDF Sticky Control Toolbar */
+.pdf-toolbar {
+  position: sticky;
+  top: calc(var(--header-height) + 43px);
+  z-index: 75;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  margin: 8px 0 16px;
+  gap: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.pdf-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pdf-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 8px;
+  min-width: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+  user-select: none;
+}
+
+.pdf-tool-btn:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-focus);
+}
+
+.pdf-tool-btn:active {
+  transform: scale(0.96);
+}
+
+.pdf-tool-btn.with-text {
+  gap: 6px;
+  padding: 0 10px;
+}
+
+.pdf-zoom-badge {
+  font-size: 0.78rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 44px;
+  text-align: center;
+  padding: 3px 6px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  user-select: none;
+}
+
+.pdf-page-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.pdf-page-input {
+  width: 52px;
+  height: 28px;
+  padding: 2px 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pdf-canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 640px;
+  width: 100%;
+  overflow: auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px 16px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+  touch-action: pan-x pan-y pinch-zoom;
+  outline: none;
+}
+
+.pdf-page-wrapper {
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.12s ease-out;
+  transform-origin: top center;
+}
+
+[data-theme="obsidian"] .pdf-page-wrapper {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  filter: brightness(0.92) contrast(1.05);
+}
+
+#pdf-main-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.pdf-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--bg-primary), 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  gap: 12px;
+}
+
+.pdf-loading-overlay.active {
+  display: flex;
+}
+
+.pdf-loading-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Reading Modes: HTML Mode, PDF Mode & Split Dual View
+   ========================================================================== */
+
+/* HTML Mode (Default) */
+.app-main.mode-html .reader-viewport {
+  display: block !important;
+}
+.app-main.mode-html .pdf-viewer-section {
+  display: none !important;
+}
+
+/* PDF Mode (Focused Facsimile) */
+.app-main.mode-pdf .reader-viewport {
+  display: none !important;
+}
+.app-main.mode-pdf .pdf-viewer-section {
+  display: flex !important;
+}
+
+/* Split Dual View (Side by Side) */
+.app-main.mode-split {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  max-width: 100%;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+.app-main.mode-split .reader-viewport {
+  flex: 1 1 50%;
+  max-width: 50%;
+  height: calc(100vh - var(--header-height) - 48px);
+  overflow-y: auto;
+  padding: 16px 20px 40px;
+  box-sizing: border-box;
+  border-right: 1px solid var(--border-color);
+}
+
+.app-main.mode-split .pdf-viewer-section {
+  flex: 1 1 50%;
+  max-width: 50%;
+  height: calc(100vh - var(--header-height) - 48px);
+  padding: 0 10px 20px 0;
+  overflow: hidden;
+  display: flex !important;
+}
+
+.app-main.mode-split .pdf-canvas-container {
+  flex: 1;
+  height: calc(100vh - var(--header-height) - 130px);
+  min-height: auto;
+}
+
+@media (max-width: 768px) {
+  .pdf-toolbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+  .pdf-tool-btn.with-text span {
+    display: none;
+  }
+  .pdf-canvas-container {
+    padding: 12px 6px;
+    min-height: 480px;
+  }
 }
 
 /* Chapter Bottom Navigation */
