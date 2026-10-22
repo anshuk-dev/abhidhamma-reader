@@ -4,17 +4,15 @@ A minimalist, high-performance, distraction-free HTML reader for ancient Therava
 
 ---
 
-## 🔗 Reading Links & How to Read
+## 🌐 Live Online Reader (Direct Link)
 
-### Option 1: Read Online via GitHub Codespaces (1-Click Private Cloud URL)
-Since this repository is private, you can read it in the cloud from your mobile phone or browser without installing anything:
-1. Click here: **[Open GitHub Codespaces](https://github.com/anshuk-dev/abhidhamma-reader/codespaces)**
-2. Click **New codespace** on `main`.
-3. It will automatically forward port `8088` and give you a private HTTPS web link to read with all interactive visual themes and controls.
+👉 **[https://anshuk-dev.github.io/abhidhamma-reader/](https://anshuk-dev.github.io/abhidhamma-reader/)**
+
+*Open this link on your phone, tablet, or computer to read with all interactive themes, typography controls, and full-text search.*
 
 ---
 
-### Option 2: Read Locally on your Mac / Computer
+## 💻 Local Reading (Mac / PC)
 Run the reader locally with one command:
 
 ```bash
